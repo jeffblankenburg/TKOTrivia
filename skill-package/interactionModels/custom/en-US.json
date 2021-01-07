@@ -1,0 +1,38 @@
+{
+    "interactionModel": {
+      "languageModel": {
+        "invocationName": "jeff's trivia game",
+        "intents": [
+          {
+            "name": "AMAZON.CancelIntent",
+            "samples": []
+          },
+          {
+            "name": "AMAZON.HelpIntent",
+            "samples": []
+          },
+          {
+            "name": "AMAZON.StopIntent",
+            "samples": []
+          },
+          {
+            "name": "AMAZON.NavigateHomeIntent",
+            "samples": []
+          },
+          {
+            "name": "AMAZON.RepeatIntent",
+            "samples": []
+          },
+          {
+            "name": "AnswerIntent",
+            "slots": [],
+            "samples": [
+              "this is the answer"
+            ]
+          }
+        ],
+        "types": []
+      }
+    },
+    "version": "3"
+  }

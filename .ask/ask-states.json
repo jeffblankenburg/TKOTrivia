@@ -1,0 +1,30 @@
+{
+  "askcliStatesVersion": "2020-03-31",
+  "profiles": {
+    "default": {
+      "skillId": "amzn1.ask.skill.c63b121f-6049-4af8-9a4b-c6ad4778436a",
+      "skillMetadata": {
+        "lastDeployHash": "xRyPrKvOOsxgOhqgM5biEN8GiJQ="
+      },
+      "code": {
+        "default": {
+          "lastDeployHash": "9/pdJtemPXSiiqH0q5xyvXAD980="
+        }
+      },
+      "skillInfrastructure": {
+        "@ask-cli/lambda-deployer": {
+          "deployState": {
+            "default": {
+              "lambda": {
+                "arn": "arn:aws:lambda:us-east-1:679180307287:function:ask-tkotrivia-default-default-1609947382598",
+                "lastModified": "2021-01-06T15:47:25.401+0000",
+                "revisionId": "79f5f3bb-db54-49a1-a24b-d2f574da2c57"
+              },
+              "iamRole": "arn:aws:iam::679180307287:role/ask-lambda-TKOTrivia-1609947374072"
+            }
+          }
+        }
+      }
+    }
+  }
+}
