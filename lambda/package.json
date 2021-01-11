@@ -9,6 +9,7 @@
   "author": "Amazon Alexa",
   "license": "ISC",
   "dependencies": {
+    "airtable": "^0.10.1",
     "ask-sdk-core": "^2.6.0",
     "ask-sdk-local-debug": "^1.1.0",
     "ask-sdk-model": "^1.18.0",

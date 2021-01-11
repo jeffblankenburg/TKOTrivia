@@ -2,6 +2,16 @@ const Alexa = require(`ask-sdk-core`);
 const handlers = require(`./handlers`);
 const interceptors = require(`./interceptors`)
 
+const CancelIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === `IntentRequest`
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === `AMAZON.CancelIntent`;
+    },
+    handle(handlerInput) {
+        return handlers.CancelIntent(handlerInput);
+    }
+};
+
 const HelpIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === `IntentRequest`
@@ -18,16 +28,6 @@ const LaunchRequestHandler = {
     },
     handle(handlerInput) {
         return handlers.LaunchRequest(handlerInput);
-    }
-};
-
-const CancelIntentHandler = {
-    canHandle(handlerInput) {
-        return Alexa.getRequestType(handlerInput.requestEnvelope) === `IntentRequest`
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === `AMAZON.CancelIntent`;
-    },
-    handle(handlerInput) {
-        return handlers.CancelIntent(handlerInput);
     }
 };
 
@@ -74,7 +74,8 @@ const ErrorHandler = {
         return true;
     },
     handle(handlerInput, error) {
-        return handlers.ErrorHandler(handlerInput);
+        console.log("ERROR HANDLED.");
+        return handlers.ErrorHandler(handlerInput, error);
     }
 };
 

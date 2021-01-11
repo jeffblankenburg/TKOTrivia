@@ -24,6 +24,13 @@
             "samples": []
           },
           {
+            "name": "QuestionIntent",
+            "slots": [],
+            "samples": [
+              "this is the answer"
+            ]
+          }
+          {
             "name": "AnswerIntent",
             "slots": [],
             "samples": [
