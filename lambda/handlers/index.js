@@ -1,3 +1,4 @@
+const AnswerIntent = require("./AnswerIntent");
 const CancelIntent = require(`./CancelIntent`);
 const ErrorHandler = require(`./ErrorHandler`);
 const HelpIntent  = require(`./HelpIntent`);
@@ -9,6 +10,7 @@ const SessionEndedRequest = require(`./SessionEndedRequest`)
 const StopIntent = require(`./StopIntent`);
 
 module.exports = {
+    AnswerIntent,
     CancelIntent,
     ErrorHandler,
     HelpIntent,

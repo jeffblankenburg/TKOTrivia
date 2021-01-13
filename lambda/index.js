@@ -2,6 +2,16 @@ const Alexa = require(`ask-sdk-core`);
 const handlers = require(`./handlers`);
 const interceptors = require(`./interceptors`)
 
+const AnswerIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === `IntentRequest`
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === `AnswerIntent`;
+    },
+    handle(handlerInput) {
+        return handlers.AnswerIntent(handlerInput);
+    }
+};
+
 const CancelIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === `IntentRequest`
@@ -105,6 +115,7 @@ exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
         LaunchRequestHandler,
         QuestionIntentHandler,
+        AnswerIntentHandler,
         HelpIntentHandler,
         CancelIntentHandler,
         StopIntentHandler,

@@ -14,9 +14,28 @@ async function QuestionIntent(handlerInput) {
     const categoryId = resolvedCategory[0].value.id;
     const soundEffect = `<audio src="https://tko-trivia.s3.amazonaws.com/audio/${categoryName.replace(" ", "_").toLowerCase()}.mp3" />`;
     const categoryIntroduction = `Here is a question from the ${categoryName} category. `;
+    const holdTimer = `<audio src="https://tko-trivia.s3.amazonaws.com/audio/15secondtimer.mp3" />`;
     const question = await data.getRandomQuestion(categoryId, helper.getLocale(handlerInput));
     console.log({question});
     const questionSpeech = question.fields.VoiceQuestion;
+    sessionAttributes.currentQuestionId = question.fields.RecordId;
+
+    const answerDirective = {
+        type: "Dialog.UpdateDynamicEntities",
+        updateBehavior: "REPLACE",
+        types: [
+            {
+                name: "Answer",
+                values: [
+                    helper.getSlotObject(question.fields.VoiceAnswer, question.fields.RecordId, question.fields.AnswerSynonyms)
+                ]
+            }
+        ]
+    };
+
+    //console.log({answerDirective});
+
+
     //const speakOutput = await data.getRandomSpeech(data.speechTypes., helper.getLocale(handlerInput));
     //const speakOutput = categoryIntroduction + " This is the question intent.";
     //SOUND EFFECT
@@ -32,11 +51,12 @@ async function QuestionIntent(handlerInput) {
 
     //ELSE IF THE USER DOES NOT INDICATE A CATEGORY, SELECT A RANDOM CATEGORY, AND GIVE A QUESTION FROM THAT CATEGORY.
 
-    const speakOutput = categoryIntroduction + soundEffect + questionSpeech;
+    const speakOutput = categoryIntroduction + soundEffect + questionSpeech + holdTimer;
     
     return handlerInput.responseBuilder
         .speak(speakOutput)
         .reprompt(speakOutput)
+        .addDirective(answerDirective)
         .getResponse();
 }
 
