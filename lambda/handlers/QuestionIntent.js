@@ -7,18 +7,22 @@ async function QuestionIntent(handlerInput) {
     const resolvedCategory = helper.getResolvedWords(handlerInput, "category");
 
     if (!resolvedCategory) {
-        const noCategorySpeech = `Uh oh, we don't have a category for ${spokenCategory}.  You can always ask for the list of categories, or ask for a random question.`;
+        const noCategorySpeech = await data.getRandomSpeech(data.speechTypes.UNKNOWN_CATEGORY, helper.getLocale(handlerInput)).replace("[CATEGORY_NAME]", spokenCategory);
         return handlerInput.responseBuilder.speak(noCategorySpeech).reprompt(noCategorySpeech).getResponse();
     }
     const categoryName = resolvedCategory[0].value.name;
     const categoryId = resolvedCategory[0].value.id;
-    const soundEffect = `<audio src="https://tko-trivia.s3.amazonaws.com/audio/${categoryName.replace(" ", "_").toLowerCase()}.mp3" />`;
+    const soundEffect = `<audio src="https://tko-trivia.s3.amazonaws.com/audio/${categoryName.replace(new RegExp(" ", 'g'), "_").toLowerCase()}.mp3" />`;
     const categoryIntroduction = `Here is a question from the ${categoryName} category. `;
     const holdTimer = `<audio src="https://tko-trivia.s3.amazonaws.com/audio/15secondtimer.mp3" />`;
     const question = await data.getRandomQuestion(categoryId, helper.getLocale(handlerInput));
-    console.log({question});
+    const questionInstance = await data.putQuestionInstance(question.fields.RecordId, sessionAttributes.user.fields.RecordId);
+    const answerPrompt = await data.getRandomSpeech(data.speechTypes.ANSWER_PROMPT, helper.getLocale(handlerInput));
+    //console.log({question});
     const questionSpeech = question.fields.VoiceQuestion;
     sessionAttributes.currentQuestionId = question.fields.RecordId;
+    sessionAttributes.currentQuestionInstanceId = questionInstance.fields.RecordId;
+
 
     const answerDirective = {
         type: "Dialog.UpdateDynamicEntities",
@@ -50,8 +54,7 @@ async function QuestionIntent(handlerInput) {
         //ELSE OFFER THE USER THE ABILITY TO PURCHASE THE CATEGORY.
 
     //ELSE IF THE USER DOES NOT INDICATE A CATEGORY, SELECT A RANDOM CATEGORY, AND GIVE A QUESTION FROM THAT CATEGORY.
-
-    const speakOutput = categoryIntroduction + soundEffect + questionSpeech + holdTimer;
+    const speakOutput = [categoryIntroduction, soundEffect, questionSpeech, holdTimer, answerPrompt].join(" ");
     
     return handlerInput.responseBuilder
         .speak(speakOutput)
