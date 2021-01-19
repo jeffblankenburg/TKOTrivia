@@ -6,7 +6,8 @@ const IntentReflector = require(`./IntentReflector`);
 const LaunchRequest = require(`./LaunchRequest`);
 const QuestionIntent = require("./QuestionIntent");
 const RepeatIntent = require(`./RepeatIntent`);
-const SessionEndedRequest = require(`./SessionEndedRequest`)
+const SessionEndedRequest = require(`./SessionEndedRequest`);
+const SpecificQuestionIntent = require("./SpecificQuestionIntent");
 const StopIntent = require(`./StopIntent`);
 
 module.exports = {
@@ -19,5 +20,6 @@ module.exports = {
     QuestionIntent,
     RepeatIntent,
     SessionEndedRequest,
+    SpecificQuestionIntent,
     StopIntent
 }

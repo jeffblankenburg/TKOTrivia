@@ -61,6 +61,16 @@ const RepeatIntentHandler = {
     }
 };
 
+const SpecificQuestionIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === `IntentRequest`
+        && Alexa.getIntentName(handlerInput.requestEnvelope) === `SpecificQuestionIntent`;
+    },
+    handle(handlerInput) {
+        return handlers.SpecificQuestionIntent(handlerInput);
+    }
+};
+
 const StopIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === `IntentRequest`
@@ -119,6 +129,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         HelpIntentHandler,
         CancelIntentHandler,
         StopIntentHandler,
+        SpecificQuestionIntentHandler,
         RepeatIntentHandler,
         SessionEndedRequestHandler,
         IntentReflectorHandler,

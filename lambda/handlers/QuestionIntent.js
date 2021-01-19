@@ -16,6 +16,7 @@ async function QuestionIntent(handlerInput) {
     const categoryIntroduction = `Here is a question from the ${categoryName} category. `;
     const holdTimer = `<audio src="https://tko-trivia.s3.amazonaws.com/audio/15secondtimer.mp3" />`;
     const question = await data.getRandomQuestion(categoryId, helper.getLocale(handlerInput));
+    //TODO: We should extract everything that "constructs" a question experience into its own function.
     const questionInstance = await data.putQuestionInstance(question.fields.RecordId, sessionAttributes.user.fields.RecordId);
     const answerPrompt = await data.getRandomSpeech(data.speechTypes.ANSWER_PROMPT, helper.getLocale(handlerInput));
     //console.log({question});
