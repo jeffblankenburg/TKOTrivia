@@ -23,6 +23,7 @@ async function QuestionIntent(handlerInput) {
     const questionSpeech = question.fields.VoiceQuestion;
     sessionAttributes.currentQuestionId = question.fields.RecordId;
     sessionAttributes.currentQuestionInstanceId = questionInstance.fields.RecordId;
+    sessionAttributes.currentQuestion = question;
 
 
     const answerDirective = {

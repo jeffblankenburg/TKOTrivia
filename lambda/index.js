@@ -22,6 +22,26 @@ const CancelIntentHandler = {
     }
 };
 
+const CategoryFullListIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === `IntentRequest`
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === `CategoryFullListIntent`;
+    },
+    handle(handlerInput) {
+        return handlers.CategoryFullListIntent(handlerInput);
+    }
+};
+
+const CategoryListIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === `IntentRequest`
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === `CategoryListIntent`;
+    },
+    handle(handlerInput) {
+        return handlers.CategoryListIntent(handlerInput);
+    }
+};
+
 const HelpIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === `IntentRequest`
@@ -129,6 +149,8 @@ exports.handler = Alexa.SkillBuilders.custom()
         HelpIntentHandler,
         CancelIntentHandler,
         StopIntentHandler,
+        CategoryListIntentHandler,
+        CategoryFullListIntentHandler,
         SpecificQuestionIntentHandler,
         RepeatIntentHandler,
         SessionEndedRequestHandler,

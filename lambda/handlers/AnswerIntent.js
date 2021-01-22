@@ -16,19 +16,22 @@ async function AnswerIntent(handlerInput) {
         const questionInstance = await data.updateQuestionInstance(sessionAttributes.currentQuestionInstanceId, sessionAttributes.currentQuestionId, sessionAttributes.user.fields.RecordId, false, wrongSpokenWords);
         const wrongSpeechcon = await data.getRandomSpeech(data.speechTypes.SPEECHCON_WRONG, helper.getLocale(handlerInput));
         const wrongAnswer = (await data.getRandomSpeech(data.speechTypes.WRONG_ANSWER, helper.getLocale(handlerInput))).replace("[WRONG_ANSWER]", wrongSpokenWords);
+        let answerNote = `The answer was ${sessionAttributes.currentQuestion.fields.VoiceAnswer}. `;
+        if (sessionAttributes.currentQuestion.fields?.VoiceAnswerNote) answerNote += sessionAttributes.currentQuestion.fields.VoiceAnswerNote + ". ";
         //);
         const wrongSound = `<audio src="soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_negative_response_01"/>`;
-        speakOutput = [wrongSound, wrongSpeechcon, wrongAnswer, actionQuery].join(" ");
+        speakOutput = [wrongSound, wrongSpeechcon, wrongAnswer, answerNote, actionQuery].join(" ");
 
     } 
     else if (resolvedAnswer[0].value.id = sessionAttributes.currentQuestionId) {
         const questionInstance = await data.updateQuestionInstance(sessionAttributes.currentQuestionInstanceId, sessionAttributes.currentQuestionId, sessionAttributes.user.fields.RecordId, true, spokenWords);
         const correctSpeechcon = await data.getRandomSpeech(data.speechTypes.SPEECHCON_CORRECT, helper.getLocale(handlerInput));
         const correctAnswer = await data.getRandomSpeech(data.speechTypes.CORRECT_ANSWER, helper.getLocale(handlerInput));
-        
+        let answerNote = `The answer was ${sessionAttributes.currentQuestion.fields.VoiceAnswer}. `;
+        if (sessionAttributes.currentQuestion.fields?.VoiceAnswerNote) answerNote += sessionAttributes.currentQuestion.fields.VoiceAnswerNote + ". ";
         const correctSound = `<audio src="soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_01"/>`;
 
-        speakOutput = [correctSound, correctSpeechcon, correctAnswer, actionQuery].join(" ");
+        speakOutput = [correctSound, correctSpeechcon, correctAnswer, answerNote, actionQuery].join(" ");
     }
 
     //CLEAR THE currentQuestionId from the SessionAttributes when we complete this step.

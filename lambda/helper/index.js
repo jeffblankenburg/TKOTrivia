@@ -1,5 +1,6 @@
 const getLocale = require(`./getLocale`);
 const getPollyVoice = require("./getPollyVoice");
+const getRandom = require("./getRandom");
 const getRandomItem = require("./getRandomItem");
 const getResolvedWords = require("./getResolvedWords");
 const getSlotObject = require("./getSlotObject");
@@ -9,6 +10,7 @@ const getUserId = require("./getUserId")
 module.exports = {
     getLocale,
     getPollyVoice,
+    getRandom,
     getRandomItem,
     getResolvedWords,
     getSlotObject,
