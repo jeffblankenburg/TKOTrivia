@@ -4,16 +4,34 @@ const helper = require("../helper");
 async function QuestionIntent(handlerInput) {
     const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
     const spokenCategory = helper.getSpokenWords(handlerInput, "category");
+    const wrongCategory = helper.getSpokenWords(handlerInput, "wrong");
     const resolvedCategory = helper.getResolvedWords(handlerInput, "category");
 
-    if (!resolvedCategory) {
-        const noCategorySpeech = await data.getRandomSpeech(data.speechTypes.UNKNOWN_CATEGORY, helper.getLocale(handlerInput)).replace("[CATEGORY_NAME]", spokenCategory);
-        return handlerInput.responseBuilder.speak(noCategorySpeech).reprompt(noCategorySpeech).getResponse();
+    let categoryName;
+    let categoryId;
+    //THEY SAID A CATEGORY WE DON'T HAVE
+    if (!resolvedCategory && (wrongCategory != undefined)) {
+        const wrongCategoryInstance = await data.putCategoryInstance(wrongCategory, sessionAttributes.user.fields.RecordId);
+        const randomSpeech = await data.getRandomSpeech(data.speechTypes.UNKNOWN_CATEGORY, helper.getLocale(handlerInput));
+        const noCategorySpeech = randomSpeech.replace("[CATEGORY_NAME]", wrongCategory);
+        const actionQuery = await data.getRandomSpeech(data.speechTypes.ACTION_QUERY, helper.getLocale(handlerInput));
+        return handlerInput.responseBuilder.speak(noCategorySpeech + " " + actionQuery).reprompt(actionQuery).getResponse();
     }
-    const categoryName = resolvedCategory[0].value.name;
-    const categoryId = resolvedCategory[0].value.id;
+    //THEY ASKED FOR A RANDOM CATEGORY
+    else if (!resolvedCategory && wrongCategory == undefined) {
+        const categoryList = await data.getCategoryList();
+        const randomCategory = helper.getRandomItem(categoryList);
+        categoryName = randomCategory.fields.Name;
+        categoryId = randomCategory.fields.RecordId;
+    }
+    //THEY MATCHED AN EXISTING CATEGORY.
+    else {
+        categoryName = resolvedCategory[0].value.name;
+        categoryId = resolvedCategory[0].value.id;
+    }
+    
     const soundEffect = `<audio src="https://tko-trivia.s3.amazonaws.com/audio/${categoryName.replace(new RegExp(" ", 'g'), "_").toLowerCase()}.mp3" />`;
-    const categoryIntroduction = `Here is a question from the ${categoryName} category. `;
+    const categoryIntroduction = (await data.getRandomSpeech(data.speechTypes.CATEGORY_INTRO, helper.getLocale(handlerInput))).replace("[CATEGORY_NAME]", categoryName);
     const holdTimer = `<audio src="https://tko-trivia.s3.amazonaws.com/audio/15secondtimer.mp3" />`;
     const question = await data.getRandomQuestion(categoryId, helper.getLocale(handlerInput));
     //TODO: We should extract everything that "constructs" a question experience into its own function.

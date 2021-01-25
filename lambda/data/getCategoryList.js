@@ -2,7 +2,7 @@ const helper = require("../helper");
 const fetch = require("node-fetch");
 const keys = require("../keys");
 
-async function getCategoryList(speechType, locale) {
+async function getCategoryList() {
   const url = `https://api.airtable.com/v0/${keys.airtable_base_data}/Category?api_key=${keys.airtable_api_key}`;
   const options = {
     method: "GET",
