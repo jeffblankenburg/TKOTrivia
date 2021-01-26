@@ -30,15 +30,13 @@ async function QuestionIntent(handlerInput) {
         categoryId = resolvedCategory[0].value.id;
     }
     
-    const soundEffect = `<audio src="https://tko-trivia.s3.amazonaws.com/audio/${categoryName.replace(new RegExp(" ", 'g'), "_").toLowerCase()}.mp3" />`;
-    const categoryIntroduction = (await data.getRandomSpeech(data.speechTypes.CATEGORY_INTRO, helper.getLocale(handlerInput))).replace("[CATEGORY_NAME]", categoryName);
-    const holdTimer = `<audio src="https://tko-trivia.s3.amazonaws.com/audio/15secondtimer.mp3" />`;
+    const userId = sessionAttributes.user.fields.RecordId;
     const question = await data.getRandomQuestion(categoryId, helper.getLocale(handlerInput));
-    //TODO: We should extract everything that "constructs" a question experience into its own function.
-    const questionInstance = await data.putQuestionInstance(question.fields.RecordId, sessionAttributes.user.fields.RecordId);
-    const answerPrompt = await data.getRandomSpeech(data.speechTypes.ANSWER_PROMPT, helper.getLocale(handlerInput));
-    //console.log({question});
-    const questionSpeech = question.fields.VoiceQuestion;
+    const speakOutput = "This is where a question should be."; //await helper.buildQuestion(categoryName, question, handlerInput)
+    const questionInstance = await data.putQuestionInstance(question.fields.RecordId, userId);
+    
+
+
     sessionAttributes.currentQuestionId = question.fields.RecordId;
     sessionAttributes.currentQuestionInstanceId = questionInstance.fields.RecordId;
     sessionAttributes.currentQuestion = question;
@@ -74,7 +72,7 @@ async function QuestionIntent(handlerInput) {
         //ELSE OFFER THE USER THE ABILITY TO PURCHASE THE CATEGORY.
 
     //ELSE IF THE USER DOES NOT INDICATE A CATEGORY, SELECT A RANDOM CATEGORY, AND GIVE A QUESTION FROM THAT CATEGORY.
-    const speakOutput = [categoryIntroduction, soundEffect, questionSpeech, holdTimer, answerPrompt].join(" ");
+    //const speakOutput = 
     
     return handlerInput.responseBuilder
         .speak(speakOutput)

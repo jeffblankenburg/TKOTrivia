@@ -8,19 +8,23 @@ async function AnswerIntent(handlerInput) {
     const resolvedAnswer = helper.getResolvedWords(handlerInput, "answer");
     let speakOutput;
     const actionQuery = await data.getRandomSpeech(data.speechTypes.ACTION_QUERY, helper.getLocale(handlerInput));
-    //IF THERE WASN'T A QUESTION ASKED, WE MIGHT STILL LAND HERE.  WHAT SHOULD WE DO?
-    //"I heard you say 'whatevertheysaid' and I wasn't expecting that.  This is a trivia game, what would you like to do?"
+    
     if (wrongSpokenWords) {
         //let [someResult, anotherResult] = await Promise.all([someCall(), anotherCall()]);
         //let [wrongSpeechcon, wrongAnswer, actionQuery] = await Promise.all(
-        const questionInstance = await data.updateQuestionInstance(sessionAttributes.currentQuestionInstanceId, sessionAttributes.currentQuestionId, sessionAttributes.user.fields.RecordId, false, wrongSpokenWords);
-        const wrongSpeechcon = await data.getRandomSpeech(data.speechTypes.SPEECHCON_WRONG, helper.getLocale(handlerInput));
-        const wrongAnswer = (await data.getRandomSpeech(data.speechTypes.WRONG_ANSWER, helper.getLocale(handlerInput))).replace("[WRONG_ANSWER]", wrongSpokenWords);
-        let answerNote = `The answer was ${sessionAttributes.currentQuestion.fields.VoiceAnswer}. `;
-        if (sessionAttributes.currentQuestion.fields?.VoiceAnswerNote) answerNote += sessionAttributes.currentQuestion.fields.VoiceAnswerNote + ". ";
-        //);
-        const wrongSound = `<audio src="soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_negative_response_01"/>`;
-        speakOutput = [wrongSound, wrongSpeechcon, wrongAnswer, answerNote, actionQuery].join(" ");
+        if (sessionAttributes.currentQuestionInstanceId) {
+            const questionInstance = await data.updateQuestionInstance(sessionAttributes.currentQuestionInstanceId, sessionAttributes.currentQuestionId, sessionAttributes.user.fields.RecordId, false, wrongSpokenWords);
+            const wrongSpeechcon = await data.getRandomSpeech(data.speechTypes.SPEECHCON_WRONG, helper.getLocale(handlerInput));
+            const wrongAnswer = (await data.getRandomSpeech(data.speechTypes.WRONG_ANSWER, helper.getLocale(handlerInput))).replace("[WRONG_ANSWER]", wrongSpokenWords);
+            let answerNote = `The answer was ${sessionAttributes.currentQuestion.fields.VoiceAnswer}. `;
+            if (sessionAttributes.currentQuestion.fields?.VoiceAnswerNote) answerNote += sessionAttributes.currentQuestion.fields.VoiceAnswerNote + ". ";
+            //);
+            const wrongSound = `<audio src="soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_negative_response_01"/>`;
+            speakOutput = [wrongSound, wrongSpeechcon, wrongAnswer, answerNote, actionQuery].join(" ");
+        }
+        else {
+            speakOutput = `I heard you say, ${wrongSpokenWords}, but I'm not sure what you want me to do. ${actionQuery}`;
+        }
 
     } 
     else if (resolvedAnswer[0].value.id = sessionAttributes.currentQuestionId) {
@@ -34,10 +38,18 @@ async function AnswerIntent(handlerInput) {
         speakOutput = [correctSound, correctSpeechcon, correctAnswer, answerNote, actionQuery].join(" ");
     }
 
-    //CLEAR THE currentQuestionId from the SessionAttributes when we complete this step.
+    sessionAttributes.currentQuestionId = undefined;
+    sessionAttributes.currentQuestionInstanceId = undefined;
+    sessionAttributes.currentQuestion = undefined;
+    const clearDirective = {
+            "type": "Dialog.UpdateDynamicEntities",
+            "updateBehavior": "CLEAR"
+    };
+
     return handlerInput.responseBuilder
         .speak(speakOutput)
         .reprompt(speakOutput)
+        .addDirective(clearDirective)
         .getResponse();
     
 }
