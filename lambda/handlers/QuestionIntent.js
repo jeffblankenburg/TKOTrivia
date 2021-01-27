@@ -32,11 +32,9 @@ async function QuestionIntent(handlerInput) {
     
     const userId = sessionAttributes.user.fields.RecordId;
     const question = await data.getRandomQuestion(categoryId, helper.getLocale(handlerInput));
-    const speakOutput = "This is where a question should be."; //await helper.buildQuestion(categoryName, question, handlerInput)
+    const speakOutput = await helper.buildQuestion(categoryName, question, handlerInput, data)
     const questionInstance = await data.putQuestionInstance(question.fields.RecordId, userId);
     
-
-
     sessionAttributes.currentQuestionId = question.fields.RecordId;
     sessionAttributes.currentQuestionInstanceId = questionInstance.fields.RecordId;
     sessionAttributes.currentQuestion = question;

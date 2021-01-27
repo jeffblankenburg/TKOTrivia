@@ -1,4 +1,4 @@
-//const buildQuestion = require("./buildQuestion");
+const buildQuestion = require("./buildQuestion");
 const getLocale = require("./getLocale");
 const getPollyVoice = require("./getPollyVoice");
 const getRandom = require("./getRandom");
@@ -9,7 +9,7 @@ const getSpokenWords = require("./getSpokenWords");
 const getUserId = require("./getUserId");
 
 module.exports = {
-    //buildQuestion,
+    buildQuestion,
     getLocale,
     getPollyVoice,
     getRandom,
