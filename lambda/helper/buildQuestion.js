@@ -1,6 +1,3 @@
-//const data = require("../data");
-// const getRandomSpeech = require("../data/getRandomSpeech");
-// const speechTypes = require("../data/speechTypes");
 const getLocale = require("./getLocale");
 
 async function buildQuestion(categoryName, question, handlerInput, data) {
