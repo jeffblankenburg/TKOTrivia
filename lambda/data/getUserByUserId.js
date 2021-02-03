@@ -3,7 +3,7 @@ const fetch = require("node-fetch");
 const keys = require("../keys");
 
 async function getUserByUserId(userId) {
-    const url = `https://api.airtable.com/v0/${keys.airtable_base_data}/User?api_key=${keys.airtable_api_key}&filterByFormula=AND(AlexaUserId%3D"${encodeURIComponent(userId)}")&fields%5B%5D=RecordId&fields%5B%5D=AlexaUserId&fields%5B%5D=QuestionCount&fields%5B%5D=Achievement&fields%5B%5D=AnswerCount&fields%5B%5D=CorrectCount&fields%5B%5D=AnsweredPercentage&fields%5B%5D=CorrectPercentage`;
+    const url = `https://api.airtable.com/v0/${keys.airtable_base_data}/User?api_key=${keys.airtable_api_key}&filterByFormula=AND(AlexaUserId%3D"${encodeURIComponent(userId)}")&fields%5B%5D=RecordId&fields%5B%5D=AlexaUserId&fields%5B%5D=QuestionCount&fields%5B%5D=Achievement&fields%5B%5D=AnswerCount&fields%5B%5D=CorrectCount&fields%5B%5D=AnsweredPercentage&fields%5B%5D=CorrectPercentage&fields%5B%5D=SessionCount&fields%5B%5D=FirstSession`;
     //console.log(`FULL PATH ${url}`);
     const options = { method: "GET" };
 
