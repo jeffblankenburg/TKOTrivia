@@ -22,7 +22,7 @@ async function getAchievementSpeech(user, locale) {
         break;
     }
 
-    switch (user.fields.AnsweredCount) {
+    switch (user.fields.AnswerCount) {
         case 1:
             achievementArray.push(await getSpecificAchievement(achievements.QUESTIONS_ANSWERED_1, locale));
         break;

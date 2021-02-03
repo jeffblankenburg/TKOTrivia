@@ -36,6 +36,8 @@ async function AnswerIntent(handlerInput) {
         outcomeSound = `<audio src="soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_01"/>`;
     }
 
+    sessionAttributes.user.fields.AnswerCount++;
+
     const achievementSpeech = await data.getAchievementSpeech(sessionAttributes.user, helper.getLocale(handlerInput));
 
     if (speakOutput === undefined) {
