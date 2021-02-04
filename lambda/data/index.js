@@ -10,6 +10,7 @@ const getUserByUserId = require("./getUserByUserId");
 const updateQuestionInstance = require("./updateQuestionInstance");
 const putCategoryInstance = require("./putCategoryInstance");
 const putQuestionInstance = require("./putQuestionInstance");
+const putUserSession = require("./putUserSession");
 const speechTypes = require("./speechTypes");
 
 module.exports = {
@@ -24,6 +25,7 @@ module.exports = {
     getUserByUserId,
     putCategoryInstance,
     putQuestionInstance,
+    putUserSession,
     speechTypes,
     updateQuestionInstance
 }
