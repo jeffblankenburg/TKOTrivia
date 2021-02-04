@@ -8,21 +8,21 @@ async function AnswerIntent(handlerInput) {
     const resolvedAnswer = helper.getResolvedWords(handlerInput, "answer");
     let speakOutput, outcomeSound, speechcon, answer, answerNote;
     const actionQuery = await data.getRandomSpeech(data.speechTypes.ACTION_QUERY, helper.getLocale(handlerInput));
-    
+    const locale = helper.getLocale(handlerInput);
+
     if (wrongSpokenWords) {
         //let [someResult, anotherResult] = await Promise.all([someCall(), anotherCall()]);
         //let [wrongSpeechcon, wrongAnswer, actionQuery] = await Promise.all(
         if (sessionAttributes.currentQuestionInstanceId) {
             const questionInstance = await data.updateQuestionInstance(sessionAttributes.currentQuestionInstanceId, sessionAttributes.currentQuestionId, sessionAttributes.user.fields.RecordId, false, wrongSpokenWords);
             speechcon = await data.getRandomSpeech(data.speechTypes.SPEECHCON_WRONG, helper.getLocale(handlerInput));
-            answer = (await data.getRandomSpeech(data.speechTypes.WRONG_ANSWER, helper.getLocale(handlerInput))).replace("[WRONG_ANSWER]", wrongSpokenWords);
-            answerNote = `The answer was ${sessionAttributes.currentQuestion.fields.VoiceAnswer}. `;
+            answer = (await data.getRandomSpeech(data.speechTypes.WRONG_ANSWER, locale)).replace("[WRONG_ANSWER]", wrongSpokenWords);
+            answerNote = (await data.getRandomSpeech(data.speechTypes.ANSWER_REVEAL, locale)).replace("[ANSWER]", sessionAttributes.currentQuestion.fields.VoiceAnswer);
             if (sessionAttributes.currentQuestion.fields?.VoiceAnswerNote) answerNote += sessionAttributes.currentQuestion.fields.VoiceAnswerNote + ". ";
-            //);
-            outcomeSound = `<audio src="soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_negative_response_01"/>`;
+            outcomeSound = await data.getRandomSpeech(data.speechTypes.SOUND_WRONG_ANSWER, locale);
         }
         else {
-            speakOutput = `I heard you say, ${wrongSpokenWords}, but I'm not sure what you want me to do. ${actionQuery}`;
+            speakOutput = `${(await data.getRandomSpeech(data.speechTypes.ANSWER_CONFUSED, locale)).replace("[WRONG_WORDS]", wrongSpokenWords)} ${actionQuery}`;
         }
 
     } 
@@ -30,10 +30,10 @@ async function AnswerIntent(handlerInput) {
         const questionInstance = await data.updateQuestionInstance(sessionAttributes.currentQuestionInstanceId, sessionAttributes.currentQuestionId, sessionAttributes.user.fields.RecordId, true, spokenWords);
         speechcon = await data.getRandomSpeech(data.speechTypes.SPEECHCON_CORRECT, helper.getLocale(handlerInput));
         answer = await data.getRandomSpeech(data.speechTypes.CORRECT_ANSWER, helper.getLocale(handlerInput));
-        answerNote = `The answer was ${sessionAttributes.currentQuestion.fields.VoiceAnswer}. `;
+        answerNote = (await data.getRandomSpeech(data.speechTypes.ANSWER_REVEAL, locale)).replace("[ANSWER]", sessionAttributes.currentQuestion.fields.VoiceAnswer);
         if (sessionAttributes.currentQuestion.fields?.VoiceAnswerNote) answerNote += sessionAttributes.currentQuestion.fields.VoiceAnswerNote + ". ";
         sessionAttributes.user.fields.CorrectCount++;
-        outcomeSound = `<audio src="soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_01"/>`;
+        outcomeSound = await data.getRandomSpeech(data.speechTypes.SOUND_CORRECT_ANSWER, helper.getLocale(handlerInput));;
     }
 
     sessionAttributes.user.fields.AnswerCount++;

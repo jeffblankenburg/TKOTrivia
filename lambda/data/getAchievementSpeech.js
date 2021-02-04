@@ -1,36 +1,41 @@
 const achievement = require("../achievement");
 const achievements = require("./achievements");
+const speechTypes = require("./speechTypes");
 const awardAchievement = require("./awardAchievement");
-const getSpecificAchievement = require("./getSpecificAchievement");
+const getRandomSpeech = require("./getRandomSpeech");
 
 async function getAchievementSpeech(user, locale) {
-    //return undefined;
-    //return "You got an achievement!  Congratulations! ";
-    const achievementSound = `<audio src="soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_02"/>`;
+    
     let achievementSpeech = "";
     let achievementArray = [];
     console.log({user});
 
-    const SessionCount = await achievement.SessionCount(user.fields.SessionCount, locale);
+    const [AchievementSound, SessionCount, AnswerCount, CorrectCount] = 
+        await Promise.all([getRandomSpeech(speechTypes.SOUND_ACHIEVEMENT, locale),
+                           achievement.SessionCount(user, locale), 
+                           achievement.AnswerCount(user, locale),
+                           achievement.CorrectCount(user, locale)]);
+
     if (SessionCount) achievementArray.push(SessionCount);
-    
-    const AnswerCount = await achievement.AnswerCount(user.fields.AnswerCount, locale);
     if (AnswerCount) achievementArray.push(AnswerCount);
-    
-    const CorrectCount = await achievement.CorrectCount(user.fields.CorrectCount, locale);
     if (CorrectCount) achievementArray.push(CorrectCount);
 
+
+    //THIS NEEDS TO BE THE LAST CHECK.
+    user.fields.AchievementCount += achievementArray.length;
+    const AchievementCount = await achievement.AchievementCount(user, locale);
+    if (AchievementCount) achievementArray.push(AchievementCount)
     //TODO: Other achievement ideas:
     //Days since the first play
     //Bigger numbers (up to 100) for existing achievements.
     //Categorical achievements?  How many science questions they've gotten correct, for example?
     //Questions Answered Correctly in the same day?
 
-    
 
     let newAchievementCount = 0;
 
     if (achievementArray.length > 0) {
+        console.log({achievementArray});
         for (const a of achievementArray) {
             if (!user.fields.Achievement || !user.fields.Achievement.includes(a.fields.RecordId)) {
                 newAchievementCount++;
@@ -41,9 +46,9 @@ async function getAchievementSpeech(user, locale) {
 
         if (achievementSpeech !== "") {
             let achievementCountSpeech = "";
-            if (newAchievementCount === 1) achievementCountSpeech = "You just unlocked an achievement! ";
-            else achievementCountSpeech = `You just unlocked ${newAchievementCount} achievements! `;
-            return [achievementSound, achievementCountSpeech, achievementSpeech].join(" ");
+            if (newAchievementCount === 1) achievementCountSpeech = await getRandomSpeech(speechTypes.ACHIEVEMENT_UNLOCKED, locale);
+            else achievementCountSpeech = (await getRandomSpeech(speechTypes.ACHIEVEMENTS_UNLOCKED, locale)).replace("[COUNT]", newAchievementCount);
+            return [AchievementSound, achievementCountSpeech, achievementSpeech].join(" ");
         }
         
     }
