@@ -4,11 +4,11 @@
     "default": {
       "skillId": "amzn1.ask.skill.c63b121f-6049-4af8-9a4b-c6ad4778436a",
       "skillMetadata": {
-        "lastDeployHash": "BEmW+6yNBtMQfL/h81BbfA66RNM="
+        "lastDeployHash": "1esipqE4MVbuukJBp8/vi5T3zx4="
       },
       "code": {
         "default": {
-          "lastDeployHash": "0p5SkTgxc4X8xZS/mYHwjVNPZqQ="
+          "lastDeployHash": "8CSxKNx5Iq+g922iJcAjbRw/sIk="
         }
       },
       "skillInfrastructure": {
@@ -17,8 +17,8 @@
             "default": {
               "lambda": {
                 "arn": "arn:aws:lambda:us-east-1:679180307287:function:TKOTrivia",
-                "lastModified": "2021-01-07T16:19:22.111+0000",
-                "revisionId": "cf6853a9-e0c6-4c3c-b9f8-de6d17542cb9"
+                "lastModified": "2021-02-08T14:50:28.712+0000",
+                "revisionId": "3d86c10b-e90a-4a57-997d-dc987848a26b"
               },
               "iamRole": "arn:aws:iam::679180307287:role/service-role/TKOTrivia-role-ynqzu5aj"
             }

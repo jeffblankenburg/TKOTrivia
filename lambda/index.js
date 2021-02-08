@@ -71,6 +71,16 @@ const QuestionIntentHandler = {
     }
 };
 
+const QuizIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === `IntentRequest`
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === `QuizIntent`;
+    },
+    handle(handlerInput) {
+        return handlers.QuizIntent(handlerInput);
+    }
+};
+
 const RepeatIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === `IntentRequest`
@@ -145,6 +155,7 @@ exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
         LaunchRequestHandler,
         QuestionIntentHandler,
+        QuizIntentHandler,
         AnswerIntentHandler,
         HelpIntentHandler,
         CancelIntentHandler,

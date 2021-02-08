@@ -7,6 +7,7 @@ const getResolvedWords = require("./getResolvedWords");
 const getSlotObject = require("./getSlotObject");
 const getSpokenWords = require("./getSpokenWords");
 const getUserId = require("./getUserId");
+const shuffleArray = require("./shuffleArray");
 
 module.exports = {
     buildQuestion,
@@ -17,5 +18,6 @@ module.exports = {
     getResolvedWords,
     getSlotObject,
     getSpokenWords,
-    getUserId
+    getUserId,
+    shuffleArray
 }

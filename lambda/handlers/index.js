@@ -7,6 +7,7 @@ const HelpIntent  = require(`./HelpIntent`);
 const IntentReflector = require(`./IntentReflector`);
 const LaunchRequest = require(`./LaunchRequest`);
 const QuestionIntent = require("./QuestionIntent");
+const QuizIntent = require("./QuizIntent");
 const RepeatIntent = require(`./RepeatIntent`);
 const SessionEndedRequest = require(`./SessionEndedRequest`);
 const SpecificQuestionIntent = require("./SpecificQuestionIntent");
@@ -22,6 +23,7 @@ module.exports = {
     IntentReflector,
     LaunchRequest,
     QuestionIntent,
+    QuizIntent,
     RepeatIntent,
     SessionEndedRequest,
     SpecificQuestionIntent,
