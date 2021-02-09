@@ -1,4 +1,5 @@
 const achievements = require("./achievements");
+const askQuestion = require("./askQuestion");
 const awardAchievement = require("./awardAchievement");
 const getAchievementSpeech = require("./getAchievementSpeech");
 const getActiveQuiz = require("./getActiveQuiz");
@@ -19,6 +20,7 @@ const speechTypes = require("./speechTypes");
 
 module.exports = {
     achievements,
+    askQuestion,
     awardAchievement,
     getAchievementSpeech,
     getActiveQuiz,

@@ -1,5 +1,6 @@
 const data = require("../data");
 const helper = require("../helper");
+const QuizIntent = require("./QuizIntent");
 
 async function AnswerIntent(handlerInput) {
     const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
@@ -26,7 +27,7 @@ async function AnswerIntent(handlerInput) {
         }
 
     } 
-    else if (resolvedAnswer[0].value.id = sessionAttributes.currentQuestionId) {
+    else if (resolvedAnswer[0].value.id == sessionAttributes.currentQuestionId) {
         const questionInstance = await data.updateQuestionInstance(sessionAttributes.currentQuestionInstanceId, sessionAttributes.currentQuestionId, sessionAttributes.user.fields.RecordId, true, spokenWords);
         speechcon = await data.getRandomSpeech(data.speechTypes.SPEECHCON_CORRECT, helper.getLocale(handlerInput));
         answer = await data.getRandomSpeech(data.speechTypes.CORRECT_ANSWER, helper.getLocale(handlerInput));
@@ -41,19 +42,13 @@ async function AnswerIntent(handlerInput) {
     const achievementSpeech = await data.getAchievementSpeech(sessionAttributes.user, helper.getLocale(handlerInput));
 
     if (speakOutput === undefined) {
-        speakOutput = [outcomeSound, speechcon, answer, answerNote, achievementSpeech, actionQuery].join(" ");
+        speakOutput = [outcomeSound, speechcon, answer, answerNote, achievementSpeech].join(" ");
+        if (sessionAttributes.currentQuizQuestionId) {
+            //TODO: WHAT DO WE DO WHEN THEY ANSWERED THE LAST QUESTION IN THE QUIZ?
+            return QuizIntent(handlerInput, speakOutput);
+        }
+        else speakOutput = [outcomeSound, speechcon, answer, answerNote, achievementSpeech, actionQuery].join(" ");
     }
-
-    
-
-    // if (result.achievements && result.achievements.length > 0) {
-    //     speakOutput += '<audio src="soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_01"/>';
-    //     if (result.achievements.length === 1) speakOutput += `<amazon:emotion name="excited" intensity="high">You got an achievement!</amazon:emotion> `;
-    //     else speakOutput += `<amazon:emotion name="excited" intensity="high">You got ${result.achievements.length} achievements!</amazon:emotion> `;
-    //     speakOutput += `<amazon:emotion name="excited" intensity="medium">`;
-    //     result.achievements.forEach(a => speakOutput += `${a.fields.Description} You get ${a.fields.Bonus} bonus coins! `);
-    //     speakOutput += `</amazon:emotion>`;
-    // }
 
     sessionAttributes.currentQuestionId = undefined;
     sessionAttributes.currentQuestionInstanceId = undefined;

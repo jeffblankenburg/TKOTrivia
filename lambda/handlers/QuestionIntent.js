@@ -32,51 +32,8 @@ async function QuestionIntent(handlerInput) {
     
     const userId = sessionAttributes.user.fields.RecordId;
     const question = await data.getRandomQuestion(categoryId, helper.getLocale(handlerInput));
-    const speakOutput = await helper.buildQuestion(categoryName, question, handlerInput, data)
-    const questionInstance = await data.putQuestionInstance(question.fields.RecordId, userId);
     
-    sessionAttributes.currentQuestionId = question.fields.RecordId;
-    sessionAttributes.currentQuestionInstanceId = questionInstance.fields.RecordId;
-    sessionAttributes.currentQuestion = question;
-
-
-    const answerDirective = {
-        type: "Dialog.UpdateDynamicEntities",
-        updateBehavior: "REPLACE",
-        types: [
-            {
-                name: "Answer",
-                values: [
-                    helper.getSlotObject(question.fields.VoiceAnswer, question.fields.RecordId, question.fields.AnswerSynonyms)
-                ]
-            }
-        ]
-    };
-
-    //console.log({answerDirective});
-
-
-    //const speakOutput = await data.getRandomSpeech(data.speechTypes., helper.getLocale(handlerInput));
-    //const speakOutput = categoryIntroduction + " This is the question intent.";
-    //SOUND EFFECT
-    //CATEGORY INTRODUCTION
-    //QUESTION
-    //HOLD MUSIC
-    //TRAINING FOR INTERRUPTION
-    //WHAT IS YOUR ANSWER?
-
-    //IF THE USER INDICATES A CATEGORY,
-        //IF THE USER OWNS THE CATEGORY, GIVE THEM THE QUESTION
-        //ELSE OFFER THE USER THE ABILITY TO PURCHASE THE CATEGORY.
-
-    //ELSE IF THE USER DOES NOT INDICATE A CATEGORY, SELECT A RANDOM CATEGORY, AND GIVE A QUESTION FROM THAT CATEGORY.
-    //const speakOutput = 
-    
-    return handlerInput.responseBuilder
-        .speak(speakOutput)
-        .reprompt(speakOutput)
-        .addDirective(answerDirective)
-        .getResponse();
+    return await data.askQuestion(question, handlerInput, data);
 }
 
 module.exports = QuestionIntent;
