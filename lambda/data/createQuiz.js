@@ -1,15 +1,15 @@
 const getCategoryList = require("./getCategoryList");
+const getSpecificQuiz = require("./getSpecificQuiz");
 const helper = require("../helper");
 const putQuiz = require("./putQuiz");
 const putQuizQuestions = require("./putQuizQuestions");
 
 async function createQuiz(userId) {
-    let quiz = await putQuiz(userId);
+    const quiz = await putQuiz(userId);
     const categoryList = (helper.shuffleArray(await getCategoryList())).splice(10, 10);
-
-    //TODO: THIS NEXT LINE DOESN'T SEEM TO BE HAPPNING.  WE SHOULD FIGURE THIS OUT.
     const quizQuestions = await putQuizQuestions(quiz.fields.RecordId, categoryList);
-    return await getActiveQuiz(userId);
+    const newQuiz = await getSpecificQuiz(quiz.fields.RecordId);
+    return newQuiz;
 }
 
 module.exports = createQuiz;

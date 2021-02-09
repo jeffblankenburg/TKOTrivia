@@ -1,10 +1,9 @@
 const Airtable = require("airtable");
 const fetch = require("node-fetch");
 const keys = require("../keys");
-const createQuiz = require("./createQuiz");
 
-async function getActiveQuiz(userId) {
-    const url = `https://api.airtable.com/v0/${keys.airtable_base_data}/Quiz?api_key=${keys.airtable_api_key}&filterByFormula=AND(User%3D"${encodeURIComponent(userId)}",IsActive%3DTRUE())`;
+async function getSpecificQuiz(quizId) {
+    const url = `https://api.airtable.com/v0/${keys.airtable_base_data}/Quiz?api_key=${keys.airtable_api_key}&filterByFormula=AND(RecordId%3D"${encodeURIComponent(quizId)}",IsActive%3DTRUE())`;
     //console.log(`FULL PATH ${url}`);
     const options = { method: "GET" };
 
@@ -13,11 +12,11 @@ async function getActiveQuiz(userId) {
         .then(async (r) => {
             //console.log({r});
             if (r.records.length === 0) {
-                return await createQuiz(userId);
+                return undefined;
             } 
             return r.records[0];
         }
     );
 }
 
-module.exports = getActiveQuiz;
+module.exports = getSpecificQuiz;

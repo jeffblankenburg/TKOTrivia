@@ -3,11 +3,11 @@ const awardAchievement = require("./awardAchievement");
 const getAchievementSpeech = require("./getAchievementSpeech");
 const getActiveQuiz = require("./getActiveQuiz");
 const getCategoryList = require("./getCategoryList");
-const getQuiz = require("./getQuiz");
 const getRandomQuestion = require("./getRandomQuestion");
 const getRandomSpeech = require("./getRandomSpeech");
 const getSpecificAchievement = require("./getSpecificAchievement");
 const getSpecificQuestion = require("./getSpecificQuestion");
+const getSpecificQuiz = require("./getSpecificQuiz");
 const getUserByUserId = require("./getUserByUserId");
 const updateQuestionInstance = require("./updateQuestionInstance");
 const putCategoryInstance = require("./putCategoryInstance");
@@ -23,11 +23,11 @@ module.exports = {
     getAchievementSpeech,
     getActiveQuiz,
     getCategoryList,
-    getQuiz,
     getRandomQuestion,
     getRandomSpeech,
     getSpecificAchievement,
     getSpecificQuestion,
+    getSpecificQuiz,
     getUserByUserId,
     putCategoryInstance,
     putQuiz,
