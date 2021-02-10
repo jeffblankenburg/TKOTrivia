@@ -10,13 +10,14 @@ const getSpecificAchievement = require("./getSpecificAchievement");
 const getSpecificQuestion = require("./getSpecificQuestion");
 const getSpecificQuiz = require("./getSpecificQuiz");
 const getUserByUserId = require("./getUserByUserId");
-const updateQuestionInstance = require("./updateQuestionInstance");
 const putCategoryInstance = require("./putCategoryInstance");
 const putQuiz = require("./putQuiz");
 const putQuizQuestions = require("./putQuizQuestions");
 const putQuestionInstance = require("./putQuestionInstance");
 const putUserSession = require("./putUserSession");
 const speechTypes = require("./speechTypes");
+const updateQuestionInstance = require("./updateQuestionInstance");
+const updateQuizStatus = require("./updateQuizStatus");
 
 module.exports = {
     achievements,
@@ -37,5 +38,6 @@ module.exports = {
     putQuestionInstance,
     putUserSession,
     speechTypes,
-    updateQuestionInstance
+    updateQuestionInstance,
+    updateQuizStatus
 }

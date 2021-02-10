@@ -5,8 +5,11 @@ async function askQuestion(question, handlerInput, data, quizQuestionList = unde
     if (quizQuestionList) questionNumber = 11 - quizQuestionList.length;
     const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
     const userId = sessionAttributes.user.fields.RecordId;
-    const quizQuestion = undefined;
-    if (quizQuestionList) quizQuestion = quizQuestionList[0];
+    let quizQuestion = undefined;
+    if (quizQuestionList) {
+        quizQuestion = quizQuestionList[0];
+        //sessionAttributes.currentQuiz.fields.AskedCount++;
+    } 
 
     const [questionSpeech, questionInstance, answerPrompt] = 
         await Promise.all([helper.buildQuestion(question, handlerInput, data, questionNumber),
