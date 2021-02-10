@@ -6,7 +6,7 @@ async function buildQuestion(question, handlerInput, data, questionNumber = unde
     const holdTimer = `<audio src="https://tko-trivia.s3.amazonaws.com/audio/15seconds.mp3" />`;
     const questionSpeech = question.fields.VoiceQuestion;
     let questionNumberSpeech = "";
-    if (questionNumber) questionNumberSpeech = `Here is your <say-as interpret-as="ordinal">${questionNumber}</say-as> question. `;
+    if (questionNumber) questionNumberSpeech = (await data.getRandomSpeech(data.speechTypes.QUESTION_NUMBER, getLocale(handlerInput))).replace("[NUMBER]", questionNumber);
     const categoryIntroduction = (await data.getRandomSpeech(data.speechTypes.CATEGORY_INTRO, getLocale(handlerInput))).replace("[CATEGORY_NAME]", categoryName);
     return [questionNumberSpeech, categoryIntroduction, soundEffect, questionSpeech, holdTimer].join(" ");
 }

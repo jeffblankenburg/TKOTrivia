@@ -2,17 +2,21 @@ const helper = require("../helper");
 
 async function askQuestion(question, handlerInput, data, quizQuestionList = undefined, preSpeech = "") {
     let questionNumber;
-    if (quizQuestionList) questionNumber = 10 - quizQuestionList.length;
+    if (quizQuestionList) questionNumber = 11 - quizQuestionList.length;
     const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
     const userId = sessionAttributes.user.fields.RecordId;
-    const questionSpeech = await helper.buildQuestion(question, handlerInput, data, questionNumber);
-    const questionInstance = await data.putQuestionInstance(question.fields.RecordId, userId, quizQuestionList[0]);
-    const answerPrompt = await data.getRandomSpeech(data.speechTypes.ANSWER_PROMPT, helper.getLocale(handlerInput));
+    const quizQuestion = undefined;
+    if (quizQuestionList) quizQuestion = quizQuestionList[0];
+
+    const [questionSpeech, questionInstance, answerPrompt] = 
+        await Promise.all([helper.buildQuestion(question, handlerInput, data, questionNumber),
+                           data.putQuestionInstance(question.fields.RecordId, userId, quizQuestion), 
+                           data.getRandomSpeech(data.speechTypes.ANSWER_PROMPT, helper.getLocale(handlerInput))]);
 
     sessionAttributes.currentQuestionId = question.fields.RecordId;
     sessionAttributes.currentQuestionInstanceId = questionInstance.fields.RecordId;
     sessionAttributes.currentQuestion = question;
-    sessionAttributes.currentQuizQuestionId = quizQuestionList[0];
+    sessionAttributes.currentQuizQuestionId = quizQuestion;
 
     const answerDirective = {
         type: "Dialog.UpdateDynamicEntities",
