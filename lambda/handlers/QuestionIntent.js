@@ -28,8 +28,32 @@ async function QuestionIntent(handlerInput) {
     else {
         categoryName = resolvedCategory[0].value.name;
         categoryId = resolvedCategory[0].value.id;
+
+        const monetizationSC = handlerInput.serviceClientFactory.getMonetizationServiceClient();
+        const ISP = await monetizationSC.getInSkillProducts(helper.getLocale(handlerInput));
+        const categoryProduct = ISP.inSkillProducts.filter(record => record.referenceName === categoryName.replace(new RegExp(" ", 'g'), "_").toLowerCase());
+        console.log({categoryProduct});
+        if (categoryProduct.length > 0 && categoryProduct[0].purchasable === "PURCHASABLE") {
+            //TODO: WE NEED TO SAVE THE CATEGORY THEY REQUESTED SO THAT WE CAN RETRIEVE IT WHEN THEY COME BACK.
+            const savedCategory = await data.putUserCategory(sessionAttributes.user.fields.RecordId, categoryId);
+            return handlerInput.responseBuilder
+                .addDirective({
+                    type: "Connections.SendRequest",
+                    name: "Upsell",
+                    payload: {
+                        InSkillProduct: {
+                            productId: categoryProduct[0].productId,
+                        },
+                        //TODO: Make this a randomized and customized category message.
+                        upsellMessage: "You don't currently own that category, but you can unlock it.  Would you like to know more?",
+                    },
+                    
+                    token: "correlationToken"
+                })
+                .getResponse();
+        }
     }
-    
+
     const userId = sessionAttributes.user.fields.RecordId;
     const question = await data.getRandomQuestion(categoryId, helper.getLocale(handlerInput));
     

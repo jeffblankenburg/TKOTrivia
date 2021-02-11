@@ -12,6 +12,30 @@ const AnswerIntentHandler = {
     }
 };
 
+const BuyDeclinedHandler = {
+    canHandle(handlerInput) {
+      return handlerInput.requestEnvelope.request.type === 'Connections.Response' &&
+             (handlerInput.requestEnvelope.request.name === 'Upsell' || handlerInput.requestEnvelope.request.name === 'Buy') &&
+             handlerInput.requestEnvelope.request.payload.purchaseResult === 'DECLINED';
+    },
+    handle(handlerInput) {
+        return handlers.BuyDeclinedHandler(handlerInput);
+    }
+};
+
+const BuySuccessHandler = {
+    canHandle(handlerInput) {
+      return handlerInput.requestEnvelope.request.type === 'Connections.Response' &&
+             (handlerInput.requestEnvelope.request.name === 'Upsell' || handlerInput.requestEnvelope.request.name === 'Buy') &&
+             handlerInput.requestEnvelope.request.payload.purchaseResult === 'ACCEPTED';
+    },
+    handle(handlerInput) {
+        return handlers.BuySuccessHandler(handlerInput);
+    }
+};
+
+//TODO: WE HAVE NOT HANDLED A SITUATION WHERE THERE WAS AN ERROR DURING THE PURCHASE.
+
 const CancelIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === `IntentRequest`
@@ -160,6 +184,8 @@ exports.handler = Alexa.SkillBuilders.custom()
         HelpIntentHandler,
         CancelIntentHandler,
         StopIntentHandler,
+        BuySuccessHandler,
+        BuyDeclinedHandler,
         CategoryListIntentHandler,
         CategoryFullListIntentHandler,
         SpecificQuestionIntentHandler,

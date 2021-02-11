@@ -14,6 +14,7 @@ const putCategoryInstance = require("./putCategoryInstance");
 const putQuiz = require("./putQuiz");
 const putQuizQuestions = require("./putQuizQuestions");
 const putQuestionInstance = require("./putQuestionInstance");
+const putUserCategory = require("./putUserCategory");
 const putUserSession = require("./putUserSession");
 const speechTypes = require("./speechTypes");
 const updateQuestionInstance = require("./updateQuestionInstance");
@@ -36,6 +37,7 @@ module.exports = {
     putQuiz,
     putQuizQuestions,
     putQuestionInstance,
+    putUserCategory,
     putUserSession,
     speechTypes,
     updateQuestionInstance,
