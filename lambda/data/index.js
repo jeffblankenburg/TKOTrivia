@@ -10,6 +10,7 @@ const getSpecificAchievement = require("./getSpecificAchievement");
 const getSpecificQuestion = require("./getSpecificQuestion");
 const getSpecificQuiz = require("./getSpecificQuiz");
 const getUserByUserId = require("./getUserByUserId");
+const getUserCategory = require("./getUserCategory");
 const putCategoryInstance = require("./putCategoryInstance");
 const putQuiz = require("./putQuiz");
 const putQuizQuestions = require("./putQuizQuestions");
@@ -33,6 +34,7 @@ module.exports = {
     getSpecificQuestion,
     getSpecificQuiz,
     getUserByUserId,
+    getUserCategory,
     putCategoryInstance,
     putQuiz,
     putQuizQuestions,

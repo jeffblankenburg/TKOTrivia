@@ -12,7 +12,7 @@ async function getRandomQuestion(categoryId, locale) {
   return fetch(url, options)
     .then((res) => res.json())
     .then((r) => {
-    console.log({r});
+    //console.log({r});
       const item = helper.getRandomItem(r.records);
       return item;
     });

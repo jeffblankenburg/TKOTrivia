@@ -45,7 +45,7 @@ async function QuestionIntent(handlerInput) {
                             productId: categoryProduct[0].productId,
                         },
                         //TODO: Make this a randomized and customized category message.
-                        upsellMessage: "You don't currently own that category, but you can unlock it.  Would you like to know more?",
+                        upsellMessage: await data.getRandomSpeech(data.speechTypes.CATEGORY_UPSELL, helper.getLocale(handlerInput)),
                     },
                     
                     token: "correlationToken"
