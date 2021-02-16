@@ -12,6 +12,16 @@ const AnswerIntentHandler = {
     }
 };
 
+const BuyCategoryHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === `IntentRequest`
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === `BuyCategoryIntent`;
+    },
+    handle(handlerInput) {
+        return handlers.BuyCategoryIntent(handlerInput);
+    }
+};
+
 const BuyDeclinedHandler = {
     canHandle(handlerInput) {
       return handlerInput.requestEnvelope.request.type === 'Connections.Response' &&
@@ -27,7 +37,7 @@ const BuySuccessHandler = {
     canHandle(handlerInput) {
       return handlerInput.requestEnvelope.request.type === 'Connections.Response' &&
              (handlerInput.requestEnvelope.request.name === 'Upsell' || handlerInput.requestEnvelope.request.name === 'Buy') &&
-             handlerInput.requestEnvelope.request.payload.purchaseResult === 'ACCEPTED';
+             (handlerInput.requestEnvelope.request.payload.purchaseResult === 'ACCEPTED' || handlerInput.requestEnvelope.request.payload.purchaseResult === 'ALREADY_PURCHASED');
     },
     handle(handlerInput) {
         return handlers.BuySuccessHandler(handlerInput);
@@ -43,6 +53,27 @@ const CancelIntentHandler = {
     },
     handle(handlerInput) {
         return handlers.CancelIntent(handlerInput);
+    }
+};
+
+const CancelSubscriptionHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === `IntentRequest`
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === `CancelSubscriptionIntent`;
+    },
+    handle(handlerInput) {
+        return handlers.CancelSubscriptionIntent(handlerInput);
+    }
+};
+
+const CancelSuccessHandler = {
+    canHandle(handlerInput) {
+      return handlerInput.requestEnvelope.request.type === 'Connections.Response' &&
+             handlerInput.requestEnvelope.request.name === 'Cancel' &&
+             handlerInput.requestEnvelope.request.payload.purchaseResult === 'ACCEPTED';
+    },
+    handle(handlerInput) {
+        return handlers.CancelSuccessHandler(handlerInput);
     }
 };
 
@@ -135,6 +166,16 @@ const StopIntentHandler = {
     }
 };
 
+const SubscriptionHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === `IntentRequest`
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === `SubscriptionIntent`;
+    },
+    handle(handlerInput) {
+        return handlers.SubscriptionIntent(handlerInput);
+    }
+};
+
 const SessionEndedRequestHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === `SessionEndedRequest`;
@@ -184,11 +225,15 @@ exports.handler = Alexa.SkillBuilders.custom()
         HelpIntentHandler,
         CancelIntentHandler,
         StopIntentHandler,
+        BuyCategoryHandler,
+        SubscriptionHandler,
+        CancelSubscriptionHandler,
         BuySuccessHandler,
         BuyDeclinedHandler,
         CategoryListIntentHandler,
         CategoryFullListIntentHandler,
         SpecificQuestionIntentHandler,
+        CancelSuccessHandler,
         RepeatIntentHandler,
         SessionEndedRequestHandler,
         IntentReflectorHandler,

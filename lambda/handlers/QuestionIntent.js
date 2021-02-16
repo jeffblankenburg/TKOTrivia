@@ -32,8 +32,10 @@ async function QuestionIntent(handlerInput) {
         const monetizationSC = handlerInput.serviceClientFactory.getMonetizationServiceClient();
         const ISP = await monetizationSC.getInSkillProducts(helper.getLocale(handlerInput));
         const categoryProduct = ISP.inSkillProducts.filter(record => record.referenceName === categoryName.replace(new RegExp(" ", 'g'), "_").toLowerCase());
+        const subscription = ISP.inSkillProducts.filter(record => record.referenceName === "subscription");
         console.log({categoryProduct});
-        if (categoryProduct.length > 0 && categoryProduct[0].purchasable === "PURCHASABLE") {
+        console.log({subscription});
+        if ((subscription[0].entitled === "NOT_ENTITLED") && (categoryProduct.length > 0 && categoryProduct[0].entitled === "NOT_ENTITLED")) {
             //TODO: WE NEED TO SAVE THE CATEGORY THEY REQUESTED SO THAT WE CAN RETRIEVE IT WHEN THEY COME BACK.
             const savedCategory = await data.putUserCategory(sessionAttributes.user.fields.RecordId, categoryId);
             return handlerInput.responseBuilder
@@ -45,7 +47,7 @@ async function QuestionIntent(handlerInput) {
                             productId: categoryProduct[0].productId,
                         },
                         //TODO: Make this a randomized and customized category message.
-                        upsellMessage: await data.getRandomSpeech(data.speechTypes.CATEGORY_UPSELL, helper.getLocale(handlerInput)),
+                        upsellMessage: (await data.getRandomSpeech(data.speechTypes.CATEGORY_UPSELL, helper.getLocale(handlerInput))).replace("[CATEGORY_NAME]", categoryName),
                     },
                     
                     token: "correlationToken"

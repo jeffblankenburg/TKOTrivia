@@ -1,7 +1,10 @@
 const AnswerIntent = require("./AnswerIntent");
+const BuyCategoryIntent = require("./BuyCategoryIntent");
 const BuyDeclinedHandler = require("./BuyDeclinedHandler");
 const BuySuccessHandler = require("./BuySuccessHandler");
 const CancelIntent = require(`./CancelIntent`);
+const CancelSubscriptionIntent = require("./CancelSubscriptionIntent");
+const CancelSuccessHandler = require("./CancelSuccessHandler");
 const CategoryFullListIntent = require("./CategoryFullListIntent");
 const CategoryListIntent = require(`./CategoryListIntent`);
 const ErrorHandler = require(`./ErrorHandler`);
@@ -14,12 +17,16 @@ const RepeatIntent = require(`./RepeatIntent`);
 const SessionEndedRequest = require(`./SessionEndedRequest`);
 const SpecificQuestionIntent = require("./SpecificQuestionIntent");
 const StopIntent = require(`./StopIntent`);
+const SubscriptionIntent = require("./SubscriptionIntent");
 
 module.exports = {
     AnswerIntent,
+    BuyCategoryIntent,
     BuyDeclinedHandler,
     BuySuccessHandler,
     CancelIntent,
+    CancelSubscriptionIntent,
+    CancelSuccessHandler,
     CategoryFullListIntent,
     CategoryListIntent,
     ErrorHandler,
@@ -31,5 +38,6 @@ module.exports = {
     RepeatIntent,
     SessionEndedRequest,
     SpecificQuestionIntent,
-    StopIntent
+    StopIntent,
+    SubscriptionIntent
 }
