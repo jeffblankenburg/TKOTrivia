@@ -2,6 +2,7 @@ const AnswerIntent = require("./AnswerIntent");
 const BuyCategoryIntent = require("./BuyCategoryIntent");
 const BuyDeclinedHandler = require("./BuyDeclinedHandler");
 const BuySuccessHandler = require("./BuySuccessHandler");
+const CancelDeclinedHandler = require("./CancelDeclinedHandler");
 const CancelIntent = require(`./CancelIntent`);
 const CancelSubscriptionIntent = require("./CancelSubscriptionIntent");
 const CancelSuccessHandler = require("./CancelSuccessHandler");
@@ -24,6 +25,7 @@ module.exports = {
     BuyCategoryIntent,
     BuyDeclinedHandler,
     BuySuccessHandler,
+    CancelDeclinedHandler,
     CancelIntent,
     CancelSubscriptionIntent,
     CancelSuccessHandler,

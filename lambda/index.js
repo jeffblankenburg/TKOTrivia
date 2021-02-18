@@ -56,6 +56,17 @@ const CancelIntentHandler = {
     }
 };
 
+const CancelDeclinedHandler = {
+    canHandle(handlerInput) {
+      return handlerInput.requestEnvelope.request.type === 'Connections.Response' &&
+             handlerInput.requestEnvelope.request.name === 'Cancel' &&
+             handlerInput.requestEnvelope.request.payload.purchaseResult === 'DECLINED';
+    },
+    handle(handlerInput) {
+        return handlers.CancelDeclinedHandler(handlerInput);
+    }
+};
+
 const CancelSubscriptionHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === `IntentRequest`
@@ -234,6 +245,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         CategoryFullListIntentHandler,
         SpecificQuestionIntentHandler,
         CancelSuccessHandler,
+        CancelDeclinedHandler,
         RepeatIntentHandler,
         SessionEndedRequestHandler,
         IntentReflectorHandler,
