@@ -5,14 +5,7 @@ async function SpecificQuestionIntent(handlerInput) {
     const questionNumber = helper.getSpokenWords(handlerInput, "question");
 
     const question = await data.getSpecificQuestion(questionNumber, helper.getLocale(handlerInput));
-    console.log({question});
-    const speakOutput = question.fields.VoiceQuestion;
-    //TODO: UNIFY THE QUESTION ASKING EXPERIENCE INTO ONE CONSISTENT FUNCTION.
-
-    return handlerInput.responseBuilder
-        .speak(speakOutput)
-        .reprompt(speakOutput)
-        .getResponse();
+    return await data.askQuestion(question, handlerInput, data);
 }
 
 module.exports = SpecificQuestionIntent;

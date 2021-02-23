@@ -11,6 +11,18 @@ async function LaunchRequest(handlerInput) {
                            data.getRandomSpeech(data.speechTypes.ACTION_QUERY, helper.getLocale(handlerInput))]);
 
     const speakOutput = [welcome, achievementSpeech, actionQuery].join(" ");
+
+    if (helper.supportsAPL(handlerInput)) {
+        const apl = require("../apl/launch.json");
+        
+        const aplDirective = {
+            type: 'Alexa.Presentation.APL.RenderDocument',
+            token: '[SkillProvidedToken]',
+            version: '1.5',
+            document: apl
+        }; 
+        handlerInput.responseBuilder.addDirective(aplDirective)
+    }
     
     return handlerInput.responseBuilder
         .speak(speakOutput)

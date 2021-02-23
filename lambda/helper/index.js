@@ -8,6 +8,7 @@ const getSlotObject = require("./getSlotObject");
 const getSpokenWords = require("./getSpokenWords");
 const getUserId = require("./getUserId");
 const shuffleArray = require("./shuffleArray");
+const supportsAPL = require("./supportsAPL");
 
 module.exports = {
     buildQuestion,
@@ -19,5 +20,6 @@ module.exports = {
     getSlotObject,
     getSpokenWords,
     getUserId,
-    shuffleArray
+    shuffleArray,
+    supportsAPL
 }

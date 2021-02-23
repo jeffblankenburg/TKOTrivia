@@ -1,0 +1,39 @@
+{
+    "longTextTemplateData": {
+        "type": "object",
+        "objectId": "longTextSample",
+        "properties": {
+            "backgroundImage": {
+                "contentDescription": null,
+                "smallSourceUrl": null,
+                "largeSourceUrl": null,
+                "sources": [
+                    {
+                        "url": "https://tko-trivia.s3.amazonaws.com/art/icons/sports_and_games_512.png",
+                        "size": "small",
+                        "widthPixels": 0,
+                        "heightPixels": 0
+                    },
+                    {
+                        "url": "https://tko-trivia.s3.amazonaws.com/art/icons/art_and_stage_512.png",
+                        "size": "large",
+                        "widthPixels": 0,
+                        "heightPixels": 0
+                    }
+                ]
+            },
+            "title": "Did You Know?",
+            "textContent": {
+                "questionText": {
+                    "type": "PlainText",
+                    "text": ""
+                },
+                "answerText": {
+                    "type": "PlainText",
+                    "text": ""
+                }
+            },
+            "logoUrl": "https://tko-trivia.s3.amazonaws.com/art/tko-logo.png"
+        }
+    }
+}
