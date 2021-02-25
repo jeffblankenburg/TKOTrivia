@@ -156,11 +156,13 @@
                         ]
                     },
                     {
-                        "type": "Image",
-                        "width": "${viewport.width}",
-                        "height": "${viewport.height}",
-                        "source": "${payload.longTextTemplateData.properties.backgroundImage.sources[0].url}",
-                        "position": "absolute"
+                        "type": "VectorGraphic",
+                        "source": "${payload.longTextTemplateData.properties.categoryPath}",
+                        "position": "absolute",
+                        "width": "100vw",
+                        "height": "100vh",
+                        "scale": "best-fit",
+                        "paddingTop": "@spacingLarge"
                     },
                     { "type": "Frame", "backgroundColor": "rgba(0,0,0,.5)", "position": "absolute", "top": 0, "left": 0, "width": "100vw", "height": "100vh" },
                     {
@@ -176,9 +178,8 @@
                         "speech": "${payload.longTextTemplateData.properties.cheeseInfoSpeech}",
                         "textAlign": "left",
                         "paddingTop": "@spacingMedium",
-                                "paddingBottom": "${@spacing3XLarge + @spacingXSmall}",
-                                "paddingLeft": "@marginHorizontal",
-                                "paddingRight": "@marginHorizontal"
+                        "paddingLeft": "@marginHorizontal",
+                        "paddingRight": "@marginHorizontal"
                     },
                     {
                         "type": "Text",

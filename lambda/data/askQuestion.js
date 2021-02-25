@@ -28,6 +28,7 @@ async function askQuestion(question, handlerInput, data, quizQuestionList = unde
     if (helper.supportsAPL(handlerInput)) {
         const apl = require("../apl/question.json");
         let aplData = require("../apl/question_data.json");
+        const icon = require("../avg/icon.json");
         
         const questionScreenText = question.fields.ScreenQuestion;
         
@@ -35,11 +36,21 @@ async function askQuestion(question, handlerInput, data, quizQuestionList = unde
         aplData.longTextTemplateData.properties.title = categoryName;
         aplData.longTextTemplateData.properties.textContent.questionText.text = questionScreenText;
         aplData.longTextTemplateData.properties.textContent.answerText.text = "";
+        aplData.longTextTemplateData.properties.categoryPath = categoryPath;
+
+        const aplDocument = {
+            ...apl,
+            graphics: {
+                ...apl.graphics,
+                ...icon
+            }
+        }
+
         const aplDirective = {
             type: 'Alexa.Presentation.APL.RenderDocument',
             token: '[SkillProvidedToken]',
             version: '1.5',
-            document: apl,
+            document: aplDocument,
             datasources: aplData
         }; 
         handlerInput.responseBuilder.addDirective(aplDirective)

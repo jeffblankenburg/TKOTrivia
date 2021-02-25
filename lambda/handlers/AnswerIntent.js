@@ -61,7 +61,7 @@ async function AnswerIntent(handlerInput) {
         
         const answerScreenText = question.fields.ScreenAnswer;
         
-        aplData.longTextTemplateData.properties.backgroundImage.sources[0].url = imageURL;
+        //aplData.longTextTemplateData.properties.backgroundImage.sources[0].url = imageURL;
         aplData.longTextTemplateData.properties.title = categoryName;
         aplData.longTextTemplateData.properties.textContent.questionText.text = question.fields.ScreenQuestion;
         aplData.longTextTemplateData.properties.textContent.answerText.text = question.fields.VoiceAnswer;

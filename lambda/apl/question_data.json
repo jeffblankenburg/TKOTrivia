@@ -33,7 +33,8 @@
                     "text": ""
                 }
             },
-            "logoUrl": "https://tko-trivia.s3.amazonaws.com/art/tko-logo.png"
+            "logoUrl": "https://tko-trivia.s3.amazonaws.com/art/tko-logo.png",
+            "categoryPath": ""
         }
     }
 }
