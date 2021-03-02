@@ -26,7 +26,7 @@ async function AnswerIntent(handlerInput) {
             speakOutput = `${(await data.getRandomSpeech(data.speechTypes.ANSWER_CONFUSED, locale)).replace("[WRONG_WORDS]", wrongSpokenWords)} ${actionQuery}`;
         }
 
-    } 
+    }
     else if (resolvedAnswer[0].value.id == sessionAttributes.currentQuestionId) {
         const questionInstance = await data.updateQuestionInstance(sessionAttributes.currentQuestionInstanceId, sessionAttributes.currentQuestionId, sessionAttributes.user.fields.RecordId, true, spokenWords);
         speechcon = await data.getRandomSpeech(data.speechTypes.SPEECHCON_CORRECT, helper.getLocale(handlerInput));
@@ -48,43 +48,50 @@ async function AnswerIntent(handlerInput) {
             return QuizIntent(handlerInput, speakOutput);
         }
         else speakOutput = [outcomeSound, speechcon, answer, answerNote, achievementSpeech, actionQuery].join(" ");
-    }
 
-    if (helper.supportsAPL(handlerInput)) {
-        const question = sessionAttributes.currentQuestion;
-        const categoryName = question.fields.Category[0];
-        const categoryPath = categoryName.replace(new RegExp(" ", 'g'), "_").toLowerCase();
-        const imageURL = question.fields.Image[0].url;//`https://tko-trivia.s3.amazonaws.com/art/icons/${categoryPath}_512.png`;
-
-        const apl = require("../apl/question.json");
-        let aplData = require("../apl/question_data.json");
-        
-        const answerScreenText = question.fields.ScreenAnswer;
-        
-        //aplData.longTextTemplateData.properties.backgroundImage.sources[0].url = imageURL;
-        aplData.longTextTemplateData.properties.title = categoryName;
-        aplData.longTextTemplateData.properties.textContent.questionText.text = question.fields.ScreenQuestion;
-        aplData.longTextTemplateData.properties.textContent.answerText.text = question.fields.VoiceAnswer;
-        const aplDirective = {
-            type: 'Alexa.Presentation.APL.RenderDocument',
-            token: '[SkillProvidedToken]',
-            version: '1.5',
-            document: apl,
-            datasources: aplData
-        }; 
-        handlerInput.responseBuilder.addDirective(aplDirective)
-    }
-    else {
-        const questionCardText = question.fields.CardQuestion;
-        handlerInput.responseBuilder.withStandardCard(categoryName, questionCardText, imageURL, imageURL);
+        if (helper.supportsAPL(handlerInput)) {
+            const question = sessionAttributes.currentQuestion;
+            const categoryName = question.fields.Category[0];
+            const categoryPath = categoryName.replace(new RegExp(" ", 'g'), "_").toLowerCase();
+            const imageURL = question.fields.Image[0].url;//`https://tko-trivia.s3.amazonaws.com/art/icons/${categoryPath}_512.png`;
+    
+            const apl = require("../apl/question.json");
+            let aplData = require("../apl/question_data.json");
+    
+            const answerScreenText = question.fields.ScreenAnswer;
+    
+            //aplData.longTextTemplateData.properties.backgroundImage.sources[0].url = imageURL;
+            aplData.longTextTemplateData.properties.title = categoryName;
+            aplData.longTextTemplateData.properties.textContent.questionText.text = question.fields.ScreenQuestion;
+            aplData.longTextTemplateData.properties.textContent.answerText.text = question.fields.VoiceAnswer;
+    
+            if (wrongSpokenWords && handlerInput.requestEnvelope.context.Extensions.available["alexaext:smartmotion:10"]) {
+                console.log("ADDING SMART MOTION COMMAND.");
+                apl.extensions = [{"name": "SmartMotion","uri": "alexaext:smartmotion:10"}];
+                apl.onMount = [{"type": "SmartMotion:PlayNamedChoreo", "sequencer": "myCustomSequencer", "delay": 500, "name": "ScreenImpactCenter" }];
+            }
+    
+            const aplDirective = {
+                type: 'Alexa.Presentation.APL.RenderDocument',
+                token: Math.random() * 999999,
+                version: '1.5',
+                document: apl,
+                datasources: aplData,
+            };
+            handlerInput.responseBuilder.addDirective(aplDirective)
+        }
+        else {
+            const questionCardText = question.fields.CardQuestion;
+            handlerInput.responseBuilder.withStandardCard(categoryName, questionCardText, imageURL, imageURL);
+        }
     }
 
     sessionAttributes.currentQuestionId = undefined;
     sessionAttributes.currentQuestionInstanceId = undefined;
     sessionAttributes.currentQuestion = undefined;
     const clearDirective = {
-            "type": "Dialog.UpdateDynamicEntities",
-            "updateBehavior": "CLEAR"
+        "type": "Dialog.UpdateDynamicEntities",
+        "updateBehavior": "CLEAR"
     };
 
     return handlerInput.responseBuilder
@@ -92,7 +99,7 @@ async function AnswerIntent(handlerInput) {
         .reprompt(speakOutput)
         .addDirective(clearDirective)
         .getResponse();
-    
+
 }
 
 module.exports = AnswerIntent;

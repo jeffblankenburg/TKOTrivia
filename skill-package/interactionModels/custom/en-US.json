@@ -117,6 +117,75 @@
                         "what is the list of categories",
                         "give me a list of categories"
                     ]
+                },
+                {
+                    "name": "QuizIntent",
+                    "slots": [],
+                    "samples": [
+                        "let's play a game",
+                        "let's do a quiz",
+                        "give me a quiz",
+                        "start a game",
+                        "play a game",
+                        "start a quiz"
+                    ]
+                },
+                {
+                    "name": "BuyCategoryIntent",
+                    "slots": [
+                        {
+                            "name": "category",
+                            "type": "Category"
+                        },
+                        {
+                            "name": "wrong",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "i want the {wrong} category",
+                        "unlock the {wrong} category",
+                        "unlock {wrong}",
+                        "i want to get the {wrong} category",
+                        "purchase {wrong}",
+                        "buy {wrong}",
+                        "buy the {wrong} category",
+                        "I want the {category} category",
+                        "Unlock the {category} category",
+                        "Unlock {category}",
+                        "I want to get the {category} category",
+                        "purchase {category}",
+                        "buy {category}",
+                        "buy the {category} category"
+                    ]
+                },
+                {
+                    "name": "SubscriptionIntent",
+                    "slots": [],
+                    "samples": [
+                        "start a subscription",
+                        "get a subscription",
+                        "start the subscription",
+                        "subscribe to TKO Trivia",
+                        "get the monthly subscription",
+                        "subscription",
+                        "purchase the subscription",
+                        "tell me about the subscription",
+                        "get the subscription",
+                        "subscribe",
+                        "buy the subscription"
+                    ]
+                },
+                {
+                    "name": "CancelSubscriptionIntent",
+                    "slots": [],
+                    "samples": [
+                        "terminate my subscription",
+                        "stop paying",
+                        "stop my subscription",
+                        "end my subscription",
+                        "cancel my subscription"
+                    ]
                 }
             ],
             "types": [

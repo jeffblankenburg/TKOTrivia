@@ -11,7 +11,7 @@ async function RequestInterceptor(handlerInput) {
         await data.putUserSession(sessionAttributes.user.fields.RecordId);
         sessionAttributes.user.fields.SessionCount++;
     }
-    if (handlerInput.requestEnvelope.request?.type != "IntentRequest" || handlerInput.requestEnvelope.request?.intent?.name != "AnswerIntent") {
+    if (handlerInput.requestEnvelope.request?.type != "IntentRequest" || (handlerInput.requestEnvelope.request?.intent?.name != "AnswerIntent" && handlerInput.requestEnvelope.request?.intent?.name != "AMAZON.RepeatIntent")) {
         sessionAttributes.currentQuestionId = undefined;
         sessionAttributes.currentQuestionInstanceId = undefined;
         sessionAttributes.currentQuestion = undefined;

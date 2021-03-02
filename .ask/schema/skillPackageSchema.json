@@ -252,6 +252,14 @@
           "pathElement": "^([A-z0-9-_+\\.\\/]+\\/)*([A-z0-9-_+\\.]+\\.(?i)[A-z]+)$"
         }
       ]
+    },
+    {
+      "pathElement": "conversations",
+      "children": [
+        {
+          "pathElement": "[a-zA-Z0-9\\-\\_\\.]{1,64}\\.(json|JSON)"
+        }
+      ]
     }
   ]
 }

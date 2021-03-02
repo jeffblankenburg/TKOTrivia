@@ -12,6 +12,8 @@
     ],
     "resources": [],
     "styles": {},
+    "onMount": [],
+    "extensions": [],
     "graphics": {
         "Spirale": {
             "parameters": [
@@ -195,13 +197,5 @@
                 ]
             }
         ]
-    },
-    "onMount": [
-        {
-            "type": "SpeakItem",
-            "componentId": "CheeseContent",
-            "highlightMode": "line",
-            "align": "center"
-        }
-    ]
+    }
 }

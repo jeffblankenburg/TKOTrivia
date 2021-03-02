@@ -7,7 +7,8 @@
     "import": [],
     "resources": [],
     "styles": {},
-    "onMount": [],
+    "extensions": [{"name": "SmartMotion","uri": "alexaext:smartmotion:10"}],
+    "onMount": [{"type": "SmartMotion:PlayNamedChoreo", "sequencer": "myCustomSequencer", "delay": 500, "name": "ClockwiseMediumSweep" }],
     "graphics": {
         "Spirale": {
             "parameters": [
