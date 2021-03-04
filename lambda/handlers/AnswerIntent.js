@@ -53,17 +53,17 @@ async function AnswerIntent(handlerInput) {
             const question = sessionAttributes.currentQuestion;
             const categoryName = question.fields.Category[0];
             const categoryPath = categoryName.replace(new RegExp(" ", 'g'), "_").toLowerCase();
-            const imageURL = question.fields.Image[0].url;//`https://tko-trivia.s3.amazonaws.com/art/icons/${categoryPath}_512.png`;
+            const imageURL = "";//question.fields.Image[0].url;//`https://tko-trivia.s3.amazonaws.com/art/icons/${categoryPath}_512.png`;
     
             const apl = require("../apl/question.json");
             let aplData = require("../apl/question_data.json");
     
-            const answerScreenText = question.fields.ScreenAnswer;
+            //const answerScreenText = question.fields.ScreenAnswer;
     
             //aplData.longTextTemplateData.properties.backgroundImage.sources[0].url = imageURL;
             aplData.longTextTemplateData.properties.title = categoryName;
             aplData.longTextTemplateData.properties.textContent.questionText.text = question.fields.ScreenQuestion;
-            aplData.longTextTemplateData.properties.textContent.answerText.text = question.fields.VoiceAnswer;
+            aplData.longTextTemplateData.properties.textContent.answerText.text = question.fields.ScreenAnswer;
     
             if (wrongSpokenWords && handlerInput.requestEnvelope.context.Extensions.available["alexaext:smartmotion:10"]) {
                 console.log("ADDING SMART MOTION COMMAND.");
