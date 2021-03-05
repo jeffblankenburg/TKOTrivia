@@ -39,7 +39,7 @@ async function AnswerIntent(handlerInput) {
 
     sessionAttributes.user.fields.AnswerCount++;
 
-    const achievementSpeech = await data.getAchievementSpeech(sessionAttributes.user, helper.getLocale(handlerInput));
+    const achievementSpeech = await data.getAchievementSpeech(sessionAttributes.user, helper.getLocale(handlerInput), question.fields.Category[0]);
 
     if (speakOutput === undefined) {
         speakOutput = [outcomeSound, speechcon, answer, answerNote, achievementSpeech].join(" ");
@@ -96,7 +96,7 @@ async function AnswerIntent(handlerInput) {
 
     return handlerInput.responseBuilder
         .speak(speakOutput)
-        .reprompt(speakOutput)
+        .reprompt(actionQuery)
         .addDirective(clearDirective)
         .getResponse();
 

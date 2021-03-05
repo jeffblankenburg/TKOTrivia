@@ -187,6 +187,15 @@ const SubscriptionHandler = {
     }
 };
 
+const UserEventHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === `Alexa.Presentation.APL.UserEvent`;
+    },
+    handle(handlerInput) {
+        return handlers.UserEventHandler(handlerInput);
+    }
+};
+
 const SessionEndedRequestHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === `SessionEndedRequest`;
@@ -239,6 +248,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         BuyCategoryHandler,
         SubscriptionHandler,
         CancelSubscriptionHandler,
+        UserEventHandler,
         BuySuccessHandler,
         BuyDeclinedHandler,
         CategoryListIntentHandler,

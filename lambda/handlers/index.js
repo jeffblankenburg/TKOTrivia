@@ -19,6 +19,7 @@ const SessionEndedRequest = require(`./SessionEndedRequest`);
 const SpecificQuestionIntent = require("./SpecificQuestionIntent");
 const StopIntent = require(`./StopIntent`);
 const SubscriptionIntent = require("./SubscriptionIntent");
+const UserEventHandler = require("./UserEventHandler");
 
 module.exports = {
     AnswerIntent,
@@ -41,5 +42,6 @@ module.exports = {
     SessionEndedRequest,
     SpecificQuestionIntent,
     StopIntent,
-    SubscriptionIntent
+    SubscriptionIntent,
+    UserEventHandler
 }

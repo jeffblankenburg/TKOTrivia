@@ -36,6 +36,10 @@
             }
           ],
           "samples": [
+            "where is {wrong}",
+            "who is {wrong}",
+            "where is {answer}",
+            "who is {answer}",
             "the answer is {wrong}",
             "it is {wrong}",
             " {wrong}",
@@ -59,6 +63,11 @@
             }
           ],
           "samples": [
+            "give me a trivia question",
+            "trivia question",
+            "random question",
+            "random trivia",
+            "random",
             "give me a {wrong} question",
             "{wrong} question",
             "i want a {wrong} question",
@@ -85,6 +94,7 @@
             }
           ],
           "samples": [
+            "give me question {question}",
             "give me number {question}"
           ]
         },
@@ -405,5 +415,5 @@
       ]
     }
   },
-  "version": "41"
+  "version": "50"
 }

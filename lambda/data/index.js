@@ -7,6 +7,7 @@ const getCategoryList = require("./getCategoryList");
 const getRandomQuestion = require("./getRandomQuestion");
 const getRandomSpeech = require("./getRandomSpeech");
 const getSpecificAchievement = require("./getSpecificAchievement");
+const getSpecificCategory = require("./getSpecificCategory");
 const getSpecificQuestion = require("./getSpecificQuestion");
 const getSpecificQuiz = require("./getSpecificQuiz");
 const getUserByUserId = require("./getUserByUserId");
@@ -32,6 +33,7 @@ module.exports = {
     getRandomQuestion,
     getRandomSpeech,
     getSpecificAchievement,
+    getSpecificCategory,
     getSpecificQuestion,
     getSpecificQuiz,
     getUserByUserId,

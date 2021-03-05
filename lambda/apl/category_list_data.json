@@ -4,102 +4,102 @@
       "properties": {
         "categories": [
           {
-            "id": "art_and_stage",
+            "id": "recPlSUbmTneu7Bgk",
             "source": "art_and_stage",
             "name": "Art & Stage"
           },
           {
-            "id": "business_world",
+            "id": "rec59rQIzQoGa5J8f",
             "source": "business_world",
-            "name": "Business"
+            "name": "Business World"
           },
           {
-            "id": "design",
+            "id": "recjlO0SAwy8jgUxh",
             "source": "design",
             "name": "Design"
           },
           {
-            "id": "film",
+            "id": "recyVJQXr4Ot362Un",
             "source": "film",
             "name": "Film"
           },
           {
-            "id": "food_and_drink",
+            "id": "recI6OQJSAbt9lfgk",
             "source": "food_and_drink",
             "name": "Food & Drink"
           },
           {
-            "id": "geography",
+            "id": "recySs74Y1TQ3CndJ",
             "source": "geography",
             "name": "Geography"
           },
           {
-            "id": "history",
+            "id": "recN73hdlt8vX8npV",
             "source": "history",
             "name": "History"
           },
           {
-            "id": "language",
+            "id": "recSjn8wl4vQfd1iD",
             "source": "language",
             "name": "Language"
           },
           {
-            "id": "literature",
+            "id": "recC0MmXiYFnwTJ0R",
             "source": "literature",
             "name": "Literature"
           },
           {
-            "id": "miscellaneous",
+            "id": "recGbtycCkGDlRaJI",
             "source": "miscellaneous",
             "name": "Miscellaneous"
           },
           {
-            "id": "music",
+            "id": "recbTxp5Zv8BAumlC",
             "source": "music",
             "name": "Music"
           },
           {
-            "id": "nature",
+            "id": "recpSc9Mr9tJjVmwY",
             "source": "nature",
             "name": "Nature"
           },
           {
-            "id": "people",
+            "id": "recc6ZrRIAMKVYOgY",
             "source": "people",
             "name": "People"
           },
           {
-            "id": "politics",
+            "id": "recoynCHkQBAOLXOc",
             "source": "politics",
             "name": "Politics"
           },
           {
-            "id": "science",
+            "id": "recMLWe8hXdlsWjNn",
             "source": "science",
             "name": "Science"
           },
           {
-            "id": "sports_and_games",
+            "id": "reca6CPDiAaqkvQPB",
             "source": "sports_and_games",
             "name": "Sports & Games"
           },
           {
-            "id": "technology",
+            "id": "recYo21mtcYqk0WrG",
             "source": "technology",
             "name": "Technology"
           },
           {
-            "id": "tradition_and_beliefs",
+            "id": "recNqo3O25J4rjd0B",
             "source": "tradition_and_beliefs",
             "name": "Tradition & Beliefs"
           },
           {
-            "id": "tv_and_radio",
+            "id": "recuvqDTuHALaaQic",
             "source": "tv_and_radio",
             "name": "TV & Radio"
           },
           {
-            "id": "united_states",
+            "id": "recrLqIHeQNU90Nry",
             "source": "united_states",
             "name": "United States"
           }
