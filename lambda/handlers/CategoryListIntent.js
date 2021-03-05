@@ -10,11 +10,13 @@ async function CategoryListIntent(handlerInput) {
 
     if (helper.supportsAPL(handlerInput)) {
         const apl = require("../apl/category_list.json");
+        const aplData = require("../apl/category_list_data.json");
         const aplDirective = {
             type: 'Alexa.Presentation.APL.RenderDocument',
             token: Math.random() * 999999,
             version: '1.5',
-            document: apl
+            document: apl,
+            datasources: aplData
         };
         handlerInput.responseBuilder.addDirective(aplDirective)
     }

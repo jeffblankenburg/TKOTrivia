@@ -3,6 +3,7 @@ const helper = require("../helper");
 
 async function ErrorHandler(handlerInput, error) {
     console.log(`~~~~ Error handled: ${error.stack}`);
+    const stack = await data.putError(sessionAttributes.user.fields.RecordId, error.stack);
     const speakOutput = await data.getRandomSpeech(data.speechTypes.ERROR, helper.getLocale(handlerInput));
 
     return handlerInput.responseBuilder

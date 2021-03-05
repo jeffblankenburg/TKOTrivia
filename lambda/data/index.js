@@ -12,6 +12,7 @@ const getSpecificQuiz = require("./getSpecificQuiz");
 const getUserByUserId = require("./getUserByUserId");
 const getUserCategory = require("./getUserCategory");
 const putCategoryInstance = require("./putCategoryInstance");
+const putError = require("./putError");
 const putQuiz = require("./putQuiz");
 const putQuizQuestions = require("./putQuizQuestions");
 const putQuestionInstance = require("./putQuestionInstance");
@@ -36,6 +37,7 @@ module.exports = {
     getUserByUserId,
     getUserCategory,
     putCategoryInstance,
+    putError,
     putQuiz,
     putQuizQuestions,
     putQuestionInstance,

@@ -81,8 +81,8 @@ async function AnswerIntent(handlerInput) {
             handlerInput.responseBuilder.addDirective(aplDirective)
         }
         else {
-            const questionCardText = question.fields.CardQuestion;
-            handlerInput.responseBuilder.withStandardCard(categoryName, questionCardText, imageURL, imageURL);
+            //const questionCardText = question.fields.CardQuestion;
+            //handlerInput.responseBuilder.withStandardCard(categoryName, questionCardText, imageURL, imageURL);
         }
     }
 

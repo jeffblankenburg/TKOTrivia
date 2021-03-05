@@ -1,408 +1,409 @@
 {
-    "interactionModel": {
-        "languageModel": {
-            "invocationName": "jeff's trivia game",
-            "intents": [
-                {
-                    "name": "AMAZON.CancelIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.HelpIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.StopIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.NavigateHomeIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.RepeatIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AnswerIntent",
-                    "slots": [
-                        {
-                            "name": "answer",
-                            "type": "Answer"
-                        },
-                        {
-                            "name": "wrong",
-                            "type": "AMAZON.SearchQuery"
-                        }
-                    ],
-                    "samples": [
-                        "the answer is {wrong}",
-                        "it is {wrong}",
-                        " {wrong}",
-                        "i think it is {answer}",
-                        "what is {answer}",
-                        "it is {answer}",
-                        "the answer is {answer}",
-                        "{answer}"
-                    ]
-                },
-                {
-                    "name": "QuestionIntent",
-                    "slots": [
-                        {
-                            "name": "category",
-                            "type": "Category"
-                        },
-                        {
-                            "name": "wrong",
-                            "type": "AMAZON.SearchQuery"
-                        }
-                    ],
-                    "samples": [
-                        "give me a {wrong} question",
-                        "{wrong} question",
-                        "i want a {wrong} question",
-                        "give me {wrong}",
-                        "let's try {wrong}",
-                        "another question",
-                        "give me another question",
-                        "give me a question",
-                        "{category}",
-                        "let's try {category}",
-                        "give me {category}",
-                        "I want a {category} question",
-                        "{category} question",
-                        "give me a {category} question",
-                        "give me a random question"
-                    ]
-                },
-                {
-                    "name": "SpecificQuestionIntent",
-                    "slots": [
-                        {
-                            "name": "question",
-                            "type": "AMAZON.NUMBER"
-                        }
-                    ],
-                    "samples": [
-                        "give me number {question}"
-                    ]
-                },
-                {
-                    "name": "CategoryListIntent",
-                    "slots": [],
-                    "samples": [
-                        "tell me the categories",
-                        "what categories do you have",
-                        "which categories do you have",
-                        "which categories",
-                        "what are the categories"
-                    ]
-                },
-                {
-                    "name": "CategoryFullListIntent",
-                    "slots": [],
-                    "samples": [
-                        "give me the list of categories",
-                        "what is the complete list",
-                        "what is the full list",
-                        "give me the complete list",
-                        "give me the complete list of categories",
-                        "what is the full list of categories",
-                        "give me the full list of categories",
-                        "list all of the categories",
-                        "give me the full list",
-                        "what are all of the categories",
-                        "list the categories",
-                        "what is the list of categories",
-                        "give me a list of categories"
-                    ]
-                },
-                {
-                    "name": "QuizIntent",
-                    "slots": [],
-                    "samples": [
-                        "let's play a game",
-                        "let's do a quiz",
-                        "give me a quiz",
-                        "start a game",
-                        "play a game",
-                        "start a quiz"
-                    ]
-                },
-                {
-                    "name": "BuyCategoryIntent",
-                    "slots": [
-                        {
-                            "name": "category",
-                            "type": "Category"
-                        },
-                        {
-                            "name": "wrong",
-                            "type": "AMAZON.SearchQuery"
-                        }
-                    ],
-                    "samples": [
-                        "i want the {wrong} category",
-                        "unlock the {wrong} category",
-                        "unlock {wrong}",
-                        "i want to get the {wrong} category",
-                        "purchase {wrong}",
-                        "buy {wrong}",
-                        "buy the {wrong} category",
-                        "I want the {category} category",
-                        "Unlock the {category} category",
-                        "Unlock {category}",
-                        "I want to get the {category} category",
-                        "purchase {category}",
-                        "buy {category}",
-                        "buy the {category} category"
-                    ]
-                },
-                {
-                    "name": "SubscriptionIntent",
-                    "slots": [],
-                    "samples": [
-                        "start a subscription",
-                        "get a subscription",
-                        "start the subscription",
-                        "subscribe to TKO Trivia",
-                        "get the monthly subscription",
-                        "subscription",
-                        "purchase the subscription",
-                        "tell me about the subscription",
-                        "get the subscription",
-                        "subscribe",
-                        "buy the subscription"
-                    ]
-                },
-                {
-                    "name": "CancelSubscriptionIntent",
-                    "slots": [],
-                    "samples": [
-                        "terminate my subscription",
-                        "stop paying",
-                        "stop my subscription",
-                        "end my subscription",
-                        "cancel my subscription"
-                    ]
-                }
-            ],
-            "types": [
-                {
-                    "name": "Category",
-                    "values": [
-                        {
-                            "id": "recPlSUbmTneu7Bgk",
-                            "name": {
-                                "value": "Art and Stage",
-                                "synonyms": [
-                                    "art",
-                                    "stage",
-                                    "plays",
-                                    "theater"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "rec59rQIzQoGa5J8f",
-                            "name": {
-                                "value": "Business World",
-                                "synonyms": [
-                                    "business"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "recjlO0SAwy8jgUxh",
-                            "name": {
-                                "value": "Design",
-                                "synonyms": [
-                                    "design"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "recyVJQXr4Ot362Un",
-                            "name": {
-                                "value": "Film",
-                                "synonyms": [
-                                    "movies",
-                                    "movie"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "recI6OQJSAbt9lfgk",
-                            "name": {
-                                "value": "Food and Drink",
-                                "synonyms": [
-                                    "food",
-                                    "drink"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "recySs74Y1TQ3CndJ",
-                            "name": {
-                                "value": "Geography",
-                                "synonyms": [
-                                    "geography"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "recN73hdlt8vX8npV",
-                            "name": {
-                                "value": "History",
-                                "synonyms": [
-                                    "history",
-                                    "historical"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "recSjn8wl4vQfd1iD",
-                            "name": {
-                                "value": "Language",
-                                "synonyms": [
-                                    "languages",
-                                    "foreign language"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "recC0MmXiYFnwTJ0R",
-                            "name": {
-                                "value": "Literature",
-                                "synonyms": [
-                                    "books",
-                                    "novels"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "recGbtycCkGDlRaJI",
-                            "name": {
-                                "value": "Miscellaneous",
-                                "synonyms": [
-                                    "miscellaneous"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "recbTxp5Zv8BAumlC",
-                            "name": {
-                                "value": "Music",
-                                "synonyms": [
-                                    "songs",
-                                    "singers"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "recpSc9Mr9tJjVmwY",
-                            "name": {
-                                "value": "Nature",
-                                "synonyms": [
-                                    "nature"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "recc6ZrRIAMKVYOgY",
-                            "name": {
-                                "value": "People",
-                                "synonyms": [
-                                    "people"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "recoynCHkQBAOLXOc",
-                            "name": {
-                                "value": "Politics",
-                                "synonyms": [
-                                    "government"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "recMLWe8hXdlsWjNn",
-                            "name": {
-                                "value": "Science",
-                                "synonyms": [
-                                    "science"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "reca6CPDiAaqkvQPB",
-                            "name": {
-                                "value": "Sports and Games",
-                                "synonyms": [
-                                    "sports",
-                                    "games"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "recYo21mtcYqk0WrG",
-                            "name": {
-                                "value": "Technology",
-                                "synonyms": [
-                                    "tech",
-                                    "computers"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "recrLqIHeQNU90Nry",
-                            "name": {
-                                "value": "United States",
-                                "synonyms": [
-                                    "u s a",
-                                    "USA",
-                                    "united states of america"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "recNqo3O25J4rjd0B",
-                            "name": {
-                                "value": "Tradition and Beliefs",
-                                "synonyms": [
-                                    "tradition",
-                                    "beliefs",
-                                    "religion"
-                                ]
-                            }
-                        },
-                        {
-                            "id": "recuvqDTuHALaaQic",
-                            "name": {
-                                "value": "Television and Radio",
-                                "synonyms": [
-                                    "television",
-                                    "tv",
-                                    "radio",
-                                    "entertainment"
-                                ]
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "Answer",
-                    "values": [
-                        {
-                            "name": {
-                                "value": "blankenburg"
-                            }
-                        }
-                    ]
-                }
-            ]
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "tko trivia",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.RepeatIntent",
+          "samples": []
+        },
+        {
+          "name": "AnswerIntent",
+          "slots": [
+            {
+              "name": "answer",
+              "type": "Answer"
+            },
+            {
+              "name": "wrong",
+              "type": "AMAZON.SearchQuery"
+            }
+          ],
+          "samples": [
+            "the answer is {wrong}",
+            "it is {wrong}",
+            " {wrong}",
+            "i think it is {answer}",
+            "what is {answer}",
+            "it is {answer}",
+            "the answer is {answer}",
+            "{answer}"
+          ]
+        },
+        {
+          "name": "QuestionIntent",
+          "slots": [
+            {
+              "name": "category",
+              "type": "Category"
+            },
+            {
+              "name": "wrong",
+              "type": "AMAZON.SearchQuery"
+            }
+          ],
+          "samples": [
+            "give me a {wrong} question",
+            "{wrong} question",
+            "i want a {wrong} question",
+            "give me {wrong}",
+            "let's try {wrong}",
+            "another question",
+            "give me another question",
+            "give me a question",
+            "{category}",
+            "let's try {category}",
+            "give me {category}",
+            "I want a {category} question",
+            "{category} question",
+            "give me a {category} question",
+            "give me a random question"
+          ]
+        },
+        {
+          "name": "SpecificQuestionIntent",
+          "slots": [
+            {
+              "name": "question",
+              "type": "AMAZON.NUMBER"
+            }
+          ],
+          "samples": [
+            "give me number {question}"
+          ]
+        },
+        {
+          "name": "CategoryListIntent",
+          "slots": [],
+          "samples": [
+            "tell me the categories",
+            "what categories do you have",
+            "which categories do you have",
+            "which categories",
+            "what are the categories"
+          ]
+        },
+        {
+          "name": "CategoryFullListIntent",
+          "slots": [],
+          "samples": [
+            "give me the list of categories",
+            "what is the complete list",
+            "what is the full list",
+            "give me the complete list",
+            "give me the complete list of categories",
+            "what is the full list of categories",
+            "give me the full list of categories",
+            "list all of the categories",
+            "give me the full list",
+            "what are all of the categories",
+            "list the categories",
+            "what is the list of categories",
+            "give me a list of categories"
+          ]
+        },
+        {
+          "name": "QuizIntent",
+          "slots": [],
+          "samples": [
+            "let's play a game",
+            "let's do a quiz",
+            "give me a quiz",
+            "start a game",
+            "play a game",
+            "start a quiz"
+          ]
+        },
+        {
+          "name": "BuyCategoryIntent",
+          "slots": [
+            {
+              "name": "category",
+              "type": "Category"
+            },
+            {
+              "name": "wrong",
+              "type": "AMAZON.SearchQuery"
+            }
+          ],
+          "samples": [
+            "i want the {wrong} category",
+            "unlock the {wrong} category",
+            "unlock {wrong}",
+            "i want to get the {wrong} category",
+            "purchase {wrong}",
+            "buy {wrong}",
+            "buy the {wrong} category",
+            "I want the {category} category",
+            "Unlock the {category} category",
+            "Unlock {category}",
+            "I want to get the {category} category",
+            "purchase {category}",
+            "buy {category}",
+            "buy the {category} category"
+          ]
+        },
+        {
+          "name": "SubscriptionIntent",
+          "slots": [],
+          "samples": [
+            "start a subscription",
+            "get a subscription",
+            "start the subscription",
+            "subscribe to TKO Trivia",
+            "get the monthly subscription",
+            "subscription",
+            "purchase the subscription",
+            "tell me about the subscription",
+            "get the subscription",
+            "subscribe",
+            "buy the subscription"
+          ]
+        },
+        {
+          "name": "CancelSubscriptionIntent",
+          "slots": [],
+          "samples": [
+            "terminate my subscription",
+            "stop paying",
+            "stop my subscription",
+            "end my subscription",
+            "cancel my subscription"
+          ]
         }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "id": "recPlSUbmTneu7Bgk",
+              "name": {
+                "value": "Art and Stage",
+                "synonyms": [
+                  "art",
+                  "stage",
+                  "plays",
+                  "theater"
+                ]
+              }
+            },
+            {
+              "id": "rec59rQIzQoGa5J8f",
+              "name": {
+                "value": "Business World",
+                "synonyms": [
+                  "business"
+                ]
+              }
+            },
+            {
+              "id": "recjlO0SAwy8jgUxh",
+              "name": {
+                "value": "Design",
+                "synonyms": [
+                  "design"
+                ]
+              }
+            },
+            {
+              "id": "recyVJQXr4Ot362Un",
+              "name": {
+                "value": "Film",
+                "synonyms": [
+                  "movies",
+                  "movie"
+                ]
+              }
+            },
+            {
+              "id": "recI6OQJSAbt9lfgk",
+              "name": {
+                "value": "Food and Drink",
+                "synonyms": [
+                  "food",
+                  "drink"
+                ]
+              }
+            },
+            {
+              "id": "recySs74Y1TQ3CndJ",
+              "name": {
+                "value": "Geography",
+                "synonyms": [
+                  "geography"
+                ]
+              }
+            },
+            {
+              "id": "recN73hdlt8vX8npV",
+              "name": {
+                "value": "History",
+                "synonyms": [
+                  "history",
+                  "historical"
+                ]
+              }
+            },
+            {
+              "id": "recSjn8wl4vQfd1iD",
+              "name": {
+                "value": "Language",
+                "synonyms": [
+                  "languages",
+                  "foreign language"
+                ]
+              }
+            },
+            {
+              "id": "recC0MmXiYFnwTJ0R",
+              "name": {
+                "value": "Literature",
+                "synonyms": [
+                  "books",
+                  "novels"
+                ]
+              }
+            },
+            {
+              "id": "recGbtycCkGDlRaJI",
+              "name": {
+                "value": "Miscellaneous",
+                "synonyms": [
+                  "miscellaneous"
+                ]
+              }
+            },
+            {
+              "id": "recbTxp5Zv8BAumlC",
+              "name": {
+                "value": "Music",
+                "synonyms": [
+                  "songs",
+                  "singers"
+                ]
+              }
+            },
+            {
+              "id": "recpSc9Mr9tJjVmwY",
+              "name": {
+                "value": "Nature",
+                "synonyms": [
+                  "nature"
+                ]
+              }
+            },
+            {
+              "id": "recc6ZrRIAMKVYOgY",
+              "name": {
+                "value": "People",
+                "synonyms": [
+                  "people"
+                ]
+              }
+            },
+            {
+              "id": "recoynCHkQBAOLXOc",
+              "name": {
+                "value": "Politics",
+                "synonyms": [
+                  "government"
+                ]
+              }
+            },
+            {
+              "id": "recMLWe8hXdlsWjNn",
+              "name": {
+                "value": "Science",
+                "synonyms": [
+                  "science"
+                ]
+              }
+            },
+            {
+              "id": "reca6CPDiAaqkvQPB",
+              "name": {
+                "value": "Sports and Games",
+                "synonyms": [
+                  "sports",
+                  "games"
+                ]
+              }
+            },
+            {
+              "id": "recYo21mtcYqk0WrG",
+              "name": {
+                "value": "Technology",
+                "synonyms": [
+                  "tech",
+                  "computers"
+                ]
+              }
+            },
+            {
+              "id": "recrLqIHeQNU90Nry",
+              "name": {
+                "value": "United States",
+                "synonyms": [
+                  "u s a",
+                  "USA",
+                  "united states of america"
+                ]
+              }
+            },
+            {
+              "id": "recNqo3O25J4rjd0B",
+              "name": {
+                "value": "Tradition and Beliefs",
+                "synonyms": [
+                  "tradition",
+                  "beliefs",
+                  "religion"
+                ]
+              }
+            },
+            {
+              "id": "recuvqDTuHALaaQic",
+              "name": {
+                "value": "Television and Radio",
+                "synonyms": [
+                  "television",
+                  "tv",
+                  "radio",
+                  "entertainment"
+                ]
+              }
+            }
+          ],
+          "name": "Category"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "blankenburg"
+              }
+            }
+          ],
+          "name": "Answer"
+        }
+      ]
     }
+  },
+  "version": "41"
 }

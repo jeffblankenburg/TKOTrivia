@@ -79,23 +79,55 @@
         "name": "alexa::person_id:read"
       }
     ],
+    "privacyAndCompliance": {
+      "allowsPurchases": true,
+      "containsAds": false,
+      "isChildDirected": false,
+      "isExportCompliant": true,
+      "locales": {
+        "en-US": {
+          "privacyPolicyUrl": "http://jeffblankenburg.com/privacy"
+        }
+      },
+      "usesPersonalInfo": false
+    },
     "publishingInformation": {
+      "automaticDistribution": {
+        "isActive": false
+      },
       "category": "KNOWLEDGE_AND_TRIVIA",
       "distributionCountries": [],
       "isAvailableWorldwide": true,
       "locales": {
         "en-US": {
-          "description": "Sample Full Description",
+          "description": "If you thought you were good at trivia, you're about to find out you're wrong.",
           "examplePhrases": [
-            "Alexa open hello world",
-            "hello",
-            "help"
+            "Alexa, play TKO Trivia",
+            "give me a sports question",
+            "tell me about the subscription"
           ],
+          "keywords": [
+            "trivia",
+            "game",
+            "quiz",
+            "quiz",
+            "show",
+            "knowledge",
+            "game",
+            "show",
+            "trivia",
+            "game",
+            "difficult",
+            "puzzle",
+            "challenging"
+          ],
+          "largeIconUri": "https://s3.amazonaws.com/CAPS-SSE/echo_developer/9772/025dc206563c492299693c5e04f1becf/APP_ICON_LARGE?versionId=Hx_Z4Tym_6g_rRzuWgAacItgFs1eI4EH&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20210304T154005Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Credential=AKIAWBV6LQ4QDH7BQN4H%2F20210304%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=ab3580679a92716f85998552fbf136dab9a3ce476cd3e1665e06ab74c4d86851",
           "name": "TKOTrivia",
-          "summary": "Sample Short Description"
+          "smallIconUri": "https://s3.amazonaws.com/CAPS-SSE/echo_developer/8eb3/5afa75d7d04e4a73ae0110c0e7af38e9/APP_ICON?versionId=ZqUTNe8H35W0IFWxok7YreqSBjn2Lzcm&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20210304T154005Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Credential=AKIAWBV6LQ4QDH7BQN4H%2F20210304%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=245b62073e836e71851c0d5e5e2c9f56f907e9ba2d6d3b3ad06a7750a2ecab08",
+          "summary": "A trivia game that is more difficult than it should be."
         }
       },
-      "testingInstructions": "Sample Testing Instructions."
+      "testingInstructions": "I will put my testing instructions here."
     }
   }
 }

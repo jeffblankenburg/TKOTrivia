@@ -1,0 +1,109 @@
+{
+    "TKOTrivia": {
+      "type": "object",
+      "properties": {
+        "categories": [
+          {
+            "id": "art_and_stage",
+            "source": "art_and_stage",
+            "name": "Art & Stage"
+          },
+          {
+            "id": "business_world",
+            "source": "business_world",
+            "name": "Business"
+          },
+          {
+            "id": "design",
+            "source": "design",
+            "name": "Design"
+          },
+          {
+            "id": "film",
+            "source": "film",
+            "name": "Film"
+          },
+          {
+            "id": "food_and_drink",
+            "source": "food_and_drink",
+            "name": "Food & Drink"
+          },
+          {
+            "id": "geography",
+            "source": "geography",
+            "name": "Geography"
+          },
+          {
+            "id": "history",
+            "source": "history",
+            "name": "History"
+          },
+          {
+            "id": "language",
+            "source": "language",
+            "name": "Language"
+          },
+          {
+            "id": "literature",
+            "source": "literature",
+            "name": "Literature"
+          },
+          {
+            "id": "miscellaneous",
+            "source": "miscellaneous",
+            "name": "Miscellaneous"
+          },
+          {
+            "id": "music",
+            "source": "music",
+            "name": "Music"
+          },
+          {
+            "id": "nature",
+            "source": "nature",
+            "name": "Nature"
+          },
+          {
+            "id": "people",
+            "source": "people",
+            "name": "People"
+          },
+          {
+            "id": "politics",
+            "source": "politics",
+            "name": "Politics"
+          },
+          {
+            "id": "science",
+            "source": "science",
+            "name": "Science"
+          },
+          {
+            "id": "sports_and_games",
+            "source": "sports_and_games",
+            "name": "Sports & Games"
+          },
+          {
+            "id": "technology",
+            "source": "technology",
+            "name": "Technology"
+          },
+          {
+            "id": "tradition_and_beliefs",
+            "source": "tradition_and_beliefs",
+            "name": "Tradition & Beliefs"
+          },
+          {
+            "id": "tv_and_radio",
+            "source": "tv_and_radio",
+            "name": "TV & Radio"
+          },
+          {
+            "id": "united_states",
+            "source": "united_states",
+            "name": "United States"
+          }
+        ]
+      }
+    }
+  }
